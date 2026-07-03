@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IconX, IconArrowUpRight, IconRefresh, IconDownload } from '@tabler/icons-react';
 import { useGame } from '@/components/game/gameContext';
+import { useUIMode } from '@/components/core/uiModeContext';
 
 const ORB_COUNT = 12;
 const COLLECT_RADIUS = 42; // px from the rocket nose to grab an orb
@@ -610,8 +611,9 @@ const GameStage = ({ onExit }) => {
 const PlayMode = () => {
   const { active, stop } = useGame();
   const { pathname } = useLocation();
+  const { recruiter } = useUIMode();
 
-  if (!active || isCoarse()) return null;
+  if (!active || recruiter || isCoarse()) return null;
   // Key by route so a fresh field is generated per page.
   return <GameStage key={pathname} onExit={stop} />;
 };

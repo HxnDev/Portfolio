@@ -1,9 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import { IconHome, IconBriefcase, IconMail } from '@tabler/icons-react';
 import Magnetic from '@/components/core/Magnetic';
+import { useUIMode } from '@/components/core/uiModeContext';
 
 const NotFound = () => {
   const { pathname } = useLocation();
+  const { recruiter } = useUIMode();
 
   return (
     <section className="nf">
@@ -37,9 +39,11 @@ const NotFound = () => {
             <IconMail size={18} />
           </Link>
         </div>
-        <p className="nf__hint" data-reveal>
-          Pro tip: press <kbd>⌘K</kbd> anywhere to jump straight to any page or project.
-        </p>
+        {!recruiter && (
+          <p className="nf__hint" data-reveal>
+            Pro tip: type <kbd>play</kbd> anywhere to turn this site into a game.
+          </p>
+        )}
       </div>
 
       <style>{`

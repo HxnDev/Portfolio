@@ -9,9 +9,9 @@ import Preloader from '@/components/core/Preloader';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import GameProvider from '@/components/game/GameProvider';
+import UIModeProvider from '@/components/core/UIModeProvider';
 import PlayMode from '@/components/game/PlayMode';
 import CheatCode from '@/components/game/CheatCode';
-import CommandPalette from '@/components/core/CommandPalette';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -74,6 +74,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <UIModeProvider>
       <GameProvider>
         <Preloader onDone={() => setLoaded(true)} />
         <CustomCursor />
@@ -82,7 +83,6 @@ function App() {
         <SmoothScroll>
           <Navbar />
           <PlayMode />
-          <CommandPalette />
           <CheatCode />
           <main style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s ease' }}>
             <AnimatedRoutes />
@@ -90,6 +90,7 @@ function App() {
           <Footer />
         </SmoothScroll>
       </GameProvider>
+      </UIModeProvider>
     </BrowserRouter>
   );
 }

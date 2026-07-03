@@ -76,7 +76,10 @@ const CustomCursor = () => {
           position: fixed;
           top: 0;
           left: 0;
-          z-index: 99999;
+          /* Above the preloader (100000): the boot terminal has clickable
+             mode options and the global cursor:none would otherwise leave
+             the user pointer-less on it. */
+          z-index: 100001;
           display: grid;
           place-items: center;
           width: 9px;

@@ -2,15 +2,19 @@ import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { IconArrowUpRight, IconQuote, IconTerminal2 } from '@tabler/icons-react';
 import CinematicStage from '@/components/home/CinematicStage';
+import RecruiterHero from '@/components/home/RecruiterHero';
+import GitHubActivity from '@/components/home/GitHubActivity';
 import ProjectCard from '@/components/projects/ProjectCard';
 import Marquee from '@/components/common/Marquee';
 import { useGetProjects } from '@/hooks/useGetProjects';
+import { useUIMode } from '@/components/core/uiModeContext';
 import { MARQUEE_TECH } from '@/data/skills';
 import { RECOMMENDATIONS } from '@/data/recommendations';
 
 const Home = () => {
   const navigate = useNavigate();
   const { projects } = useGetProjects();
+  const { recruiter } = useUIMode();
 
   const featured = useMemo(() => projects.filter(p => p.featured).slice(0, 6), [projects]);
   const voices = useMemo(() => RECOMMENDATIONS.slice(0, 3), []);
@@ -21,9 +25,14 @@ const Home = () => {
 
   return (
     <>
-      <CinematicStage />
-
-      <Marquee items={MARQUEE_TECH} />
+      {recruiter ? (
+        <RecruiterHero />
+      ) : (
+        <>
+          <CinematicStage />
+          <Marquee items={MARQUEE_TECH} />
+        </>
+      )}
 
       {/* Featured work */}
       <section className="section container">
@@ -49,7 +58,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Terminal teaser */}
+      {/* Terminal teaser — a playful extra, hidden in recruiter mode */}
+      {!recruiter && (
       <section className="section container">
         <Link to="/terminal" className="term-cta" data-reveal aria-label="Open the interactive terminal">
           <div className="term-cta__demo" aria-hidden="true">
@@ -81,6 +91,9 @@ const Home = () => {
           </div>
         </Link>
       </section>
+      )}
+
+      {!recruiter && <GitHubActivity />}
 
       {/* Voices */}
       <section className="section container">

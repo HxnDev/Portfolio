@@ -7,6 +7,7 @@ import {
   IconTerminal2,
 } from '@tabler/icons-react';
 import Magnetic from '@/components/core/Magnetic';
+import { useUIMode } from '@/components/core/uiModeContext';
 
 const SOCIALS = [
   { icon: IconBrandGithub, label: 'GitHub', href: 'https://github.com/HxnDev' },
@@ -20,6 +21,7 @@ const SOCIALS = [
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { recruiter } = useUIMode();
 
   return (
     <footer className="footer">
@@ -70,14 +72,16 @@ const Footer = () => {
                 <Icon size={20} />
               </a>
             ))}
-            <Link
-              to="/terminal"
-              className="footer__social"
-              aria-label="Open the terminal"
-              title="hxndev shell — try 'sudo hire-me'"
-            >
-              <IconTerminal2 size={20} />
-            </Link>
+            {!recruiter && (
+              <Link
+                to="/terminal"
+                className="footer__social"
+                aria-label="Open the terminal"
+                title="hxndev shell — try 'sudo hire-me'"
+              >
+                <IconTerminal2 size={20} />
+              </Link>
+            )}
           </div>
 
           <p className="footer__copy">© {year} — React · Three.js · GLSL · GSAP</p>

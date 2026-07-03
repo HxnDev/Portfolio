@@ -10,12 +10,13 @@ Live: **[https://hxndev.com](https://hxndev.com)**
 - **Hand-written GLSL.** A custom aurora backdrop shader (domain-warped fractal noise) — no Spline, no shader libraries — that reacts to the cursor and refracts through the glass.
 - **"Aurora Noir" design system.** Deep near-black canvas with an electric-cyan primary and a warm-amber accent. Cyan + amber sit on the blue–yellow axis, the most colorblind-safe high-contrast pairing, so hierarchy reads through luminance *and* hue.
 - **Buttery motion.** Lenis momentum scrolling synced to GSAP, a magnetic custom cursor, and Framer Motion reveals.
-- **Terminal boot preloader.** The site boots like a shell — a zsh-style window types through a fake boot log (`npx hxndev@latest boot`) before the curtain lifts.
-- **Interactive terminal.** A real, working shell at `/terminal` (reachable from the homepage teaser, footer, mobile menu and ⌘K): `help`, `projects`, `open <id>`, `skills`, `neofetch`, tab-completion, arrow-key history — and `sudo hire-me`.
-- **⌘K command palette.** A hand-rolled command palette (no cmdk dependency) rendered in the browser top layer via a native `<dialog>` — fuzzy-search every page, project and action (download résumé, copy email, toggle play mode) from anywhere.
+- **Terminal boot preloader.** The site boots like a shell — a zsh-style window types through a fake boot log (`npx hxndev@latest boot`) before the curtain lifts. Every visit ends with a choice, right in the terminal: **Explorer** (full cinematic) or **Recruiter** (fast & focused).
+- **Interactive terminal.** A real, working shell at `/terminal` (reachable from the homepage teaser, footer and mobile menu): `help`, `projects`, `open <id>`, `skills`, `neofetch`, tab-completion, arrow-key history — and `sudo hire-me`.
 - **Play mode.** An opt-in mini-game: the cursor becomes a rocket, collectible orbs are scattered down the page, and a confetti win dialog tops it off. Auto-disabled on touch and reduced-motion.
 - **Cheat code.** Type `play` anywhere on the site and the rocket game launches with a toast.
 - **Designed 404.** Wrong URLs get a custom "lost in the aurora" page instead of a silent redirect.
+- **Recruiter mode.** Picked from the boot terminal on every visit — it flattens the whole experience: no 3D, no animations, system cursor, a clean scannable hero with stats and CTAs. The playful extras (play mode, terminal, live GitHub feed) are hidden too. Cinematic mode proves the craft; recruiter mode proves the judgment.
+- **Live GitHub feed.** A "Proof of life" section on the homepage pulls repo stats and the latest commits straight from the public GitHub API (localStorage-cached, fails silently offline).
 - **Performance-conscious.** Device-tiered 3D quality, clamped DPR, off-screen render pausing, lazy-loaded routes, and full `prefers-reduced-motion` support.
 
 ## Tech Stack
@@ -70,9 +71,9 @@ hxndev.github.io/
 │   ├── components/
 │   │   ├── common/           # Marquee and shared bits
 │   │   ├── core/             # Cursor, SmoothScroll, Preloader (terminal boot),
-│   │   │                     #   Grain, Magnetic, CommandPalette (⌘K)
+│   │   │                     #   Grain, Magnetic, UIModeProvider (recruiter/cinematic)
 │   │   ├── game/             # PlayMode (rocket game), CheatCode, GameProvider
-│   │   ├── home/             # CinematicStage (the scroll-driven hero)
+│   │   ├── home/             # CinematicStage, RecruiterHero, GitHubActivity
 │   │   ├── layout/           # Navbar, Footer
 │   │   ├── projects/         # ProjectCard, ProjectModal
 │   │   ├── three/            # CinematicScene, AuroraBackdrop (GLSL)

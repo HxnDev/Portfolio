@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useGame } from '@/components/game/gameContext';
+import { useUIMode } from '@/components/core/uiModeContext';
 
 const WORD = 'play';
 
@@ -11,8 +12,10 @@ const CheatCode = () => {
   const [unlocked, setUnlocked] = useState(false);
   const pos = useRef(0);
   const { start } = useGame();
+  const { recruiter } = useUIMode();
 
   useEffect(() => {
+    if (recruiter) return undefined;
     const onKey = e => {
       // Ignore while typing in inputs or the command palette.
       const tag = document.activeElement?.tagName;
@@ -33,9 +36,9 @@ const CheatCode = () => {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [start]);
+  }, [start, recruiter]);
 
-  if (!unlocked) return null;
+  if (!unlocked || recruiter) return null;
 
   return (
     <div className="cheat" role="status">

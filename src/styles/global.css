@@ -101,8 +101,8 @@ body {
    While a native <dialog> is open (.dialog-open) the top layer paints above
    the custom cursor, so the system cursor takes over. */
 @media (hover: hover) and (pointer: fine) {
-  body.has-custom-cursor:not(.dialog-open),
-  body.has-custom-cursor:not(.dialog-open) * {
+  body.has-custom-cursor:not(.dialog-open):not(.recruiter-mode),
+  body.has-custom-cursor:not(.dialog-open):not(.recruiter-mode) * {
     cursor: none !important;
   }
 }
@@ -244,6 +244,20 @@ ul {
 [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* ---- Recruiter mode: flat, instant, scannable ---- */
+body.recruiter-mode [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+body.recruiter-mode .cursor,
+body.recruiter-mode .grain {
+  display: none !important;
+}
+body.recruiter-mode .marquee__track {
+  animation: none;
 }
 
 /* ---- Accessibility: reduced motion ---- */

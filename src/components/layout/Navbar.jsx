@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import {
-  IconArrowUpRight,
-  IconMenu2,
-  IconX,
-  IconDeviceGamepad2,
-  IconCommand,
-} from '@tabler/icons-react';
+import { IconArrowUpRight, IconMenu2, IconX, IconDeviceGamepad2 } from '@tabler/icons-react';
 import Magnetic from '@/components/core/Magnetic';
 import { useGame } from '@/components/game/gameContext';
+import { useUIMode } from '@/components/core/uiModeContext';
 
 const LINKS = [
   { to: '/', label: 'Home' },
@@ -24,6 +19,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { active: playing, toggle: togglePlay } = useGame();
+  const { recruiter, toggleRecruiter } = useUIMode();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -59,25 +55,18 @@ const Navbar = () => {
           </nav>
 
           <div className="nav__cta">
-            <button
-              className="nav__cmdk"
-              onClick={() => window.dispatchEvent(new Event('open-cmdk'))}
-              aria-label="Open command palette"
-              title="Command palette (⌘K)"
-            >
-              <IconCommand size={15} />
-              <span>K</span>
-            </button>
-            <button
-              className={`nav__game ${playing ? 'is-on' : ''}`}
-              onClick={togglePlay}
-              aria-pressed={playing}
-              aria-label={playing ? 'Exit play mode' : 'Enter play mode'}
-              title={playing ? 'Exit play mode' : 'Play mode — fly a rocket & collect orbs'}
-            >
-              {playing ? <IconX size={18} /> : <IconDeviceGamepad2 size={18} />}
-              <span>{playing ? 'Exit game' : 'Play'}</span>
-            </button>
+            {!recruiter && (
+              <button
+                className={`nav__game ${playing ? 'is-on' : ''}`}
+                onClick={togglePlay}
+                aria-pressed={playing}
+                aria-label={playing ? 'Exit play mode' : 'Enter play mode'}
+                title={playing ? 'Exit play mode' : 'Play mode — fly a rocket & collect orbs'}
+              >
+                {playing ? <IconX size={18} /> : <IconDeviceGamepad2 size={18} />}
+                <span>{playing ? 'Exit game' : 'Play'}</span>
+              </button>
+            )}
             <Magnetic strength={0.4}>
               <a
                 href="/assets/resume/hassan_resume.pdf"
@@ -114,14 +103,16 @@ const Navbar = () => {
               {link.label}
             </NavLink>
           ))}
-          <NavLink
-            to="/terminal"
-            className="mobile-menu__link"
-            style={{ transitionDelay: `${0.08 + LINKS.length * 0.06}s` }}
-          >
-            <span className="mobile-menu__idx">$_</span>
-            Terminal
-          </NavLink>
+          {!recruiter && (
+            <NavLink
+              to="/terminal"
+              className="mobile-menu__link"
+              style={{ transitionDelay: `${0.08 + LINKS.length * 0.06}s` }}
+            >
+              <span className="mobile-menu__idx">$_</span>
+              Terminal
+            </NavLink>
+          )}
           <a
             href="/assets/resume/hassan_resume.pdf"
             download="hassan_resume.pdf"
@@ -131,6 +122,17 @@ const Navbar = () => {
             <span className="mobile-menu__idx">↗</span>
             Résumé
           </a>
+          <button
+            className="mobile-menu__link mobile-menu__link--btn"
+            style={{ transitionDelay: `${0.08 + (LINKS.length + 2) * 0.06}s` }}
+            onClick={() => {
+              toggleRecruiter();
+              setOpen(false);
+            }}
+          >
+            <span className="mobile-menu__idx">{recruiter ? '✦' : '▤'}</span>
+            {recruiter ? 'Cinematic mode' : 'Recruiter mode'}
+          </button>
         </nav>
       </div>
 
@@ -211,23 +213,6 @@ const Navbar = () => {
           display: flex;
           align-items: center;
           gap: 0.7rem;
-        }
-        .nav__cmdk {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.15rem;
-          padding: 0.55rem 0.8rem;
-          border-radius: 99px;
-          border: 1px solid var(--line-strong);
-          color: var(--ink-dim);
-          font-family: var(--font-mono);
-          font-size: 0.76rem;
-          transition: all 0.3s var(--ease-out);
-        }
-        .nav__cmdk:hover {
-          color: var(--cyan);
-          border-color: var(--cyan);
-          box-shadow: var(--glow-cyan, 0 0 30px rgba(91, 233, 255, 0.25));
         }
         /* Play toggle: only meaningful with a real cursor, so it's hidden on
            touch devices where there's nothing to fly. */
@@ -315,6 +300,10 @@ const Navbar = () => {
           font-family: var(--font-mono);
           font-size: 0.9rem;
           color: var(--ink-mute);
+        }
+        .mobile-menu__link--btn {
+          text-align: left;
+          padding: 0;
         }
       `}</style>
     </>

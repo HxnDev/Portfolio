@@ -2,7 +2,7 @@
 
 A cinematic, scroll-driven portfolio built to prove a point: that an engineer can also design and ship an award-grade interface. The homepage isn't a stack of sections — it's a single pinned 3D world you scroll *through*, rendered with a hand-written GLSL shader and React Three Fiber.
 
-Live: **[https://hxndev.github.io/](https://hxndev.github.io/)**
+Live: **[https://hxndev.com](https://hxndev.com)**
 
 ## Highlights
 

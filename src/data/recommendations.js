@@ -3,6 +3,15 @@
 
 export const RECOMMENDATIONS = [
   {
+    name: 'Mitra Gholami',
+    title: 'Robotics Engineer @ AICA',
+    relation: 'Worked with Hassan at AICA on different teams',
+    date: 'Jul 2026',
+    url: null,
+    quote:
+      "I had the pleasure of working with Hassan Shahzad for the past four months at AICA SA. Although I'm still early in my career, working alongside him has been a great experience. Hassan is a highly skilled frontend engineer who delivers clean, maintainable code and approaches problems with a thoughtful and structured mindset. But beyond his strong technical abilities, what stood out most for me was his patience and willingness to help others and team members, either through explaining technical concepts or providing constructive feedback. I particularly appreciated his balance between attention to details and keeping projects moving forward. His positive attitude and collaborative approach made him someone everyone enjoyed working with. I highly recommend Hassan to anyone looking for a talented frontend engineer who is a good team player as well.",
+  },
+  {
     name: 'Zainab Israr',
     title: 'AI Engineer @ IBM',
     relation: 'Reported to Hassan directly',

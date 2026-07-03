@@ -4,6 +4,7 @@ import {
   IconBrandLinkedin,
   IconMail,
   IconArrowUpRight,
+  IconTerminal2,
 } from '@tabler/icons-react';
 import Magnetic from '@/components/core/Magnetic';
 
@@ -69,6 +70,14 @@ const Footer = () => {
                 <Icon size={20} />
               </a>
             ))}
+            <Link
+              to="/terminal"
+              className="footer__social"
+              aria-label="Open the terminal"
+              title="hxndev shell — try 'sudo hire-me'"
+            >
+              <IconTerminal2 size={20} />
+            </Link>
           </div>
 
           <p className="footer__copy">© {year} — React · Three.js · GLSL · GSAP</p>

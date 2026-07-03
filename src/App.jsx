@@ -1,5 +1,5 @@
-import { Suspense, lazy, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Suspense, lazy, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import SmoothScroll from '@/components/core/SmoothScroll';
@@ -10,6 +10,8 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import GameProvider from '@/components/game/GameProvider';
 import PlayMode from '@/components/game/PlayMode';
+import CheatCode from '@/components/game/CheatCode';
+import CommandPalette from '@/components/core/CommandPalette';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -18,6 +20,8 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Certifications = lazy(() => import('./pages/Certifications'));
 const Recommendations = lazy(() => import('./pages/Recommendations'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Terminal = lazy(() => import('./pages/Terminal'));
 
 const pageVariants = {
   initial: { opacity: 0, y: 24 },
@@ -30,6 +34,15 @@ const Page = ({ children }) => (
     {children}
   </motion.div>
 );
+
+// react-router's <Navigate> only handles in-app paths; external URLs need a
+// real document navigation.
+const ExternalRedirect = ({ to }) => {
+  useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+  return null;
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -45,13 +58,11 @@ const AnimatedRoutes = () => {
           <Route path="/certifications" element={<Page><Certifications /></Page>} />
           <Route path="/recommendations" element={<Page><Recommendations /></Page>} />
           <Route path="/contact" element={<Page><Contact /></Page>} />
+          <Route path="/terminal" element={<Page><Terminal /></Page>} />
 
-          <Route path="/JobFit" element={<Navigate to="https://hxndev.github.io/JobFit/" replace />} />
-          <Route
-            path="/JobFit/*"
-            element={<Navigate to="https://hxndev.github.io/JobFit/" replace />}
-          />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/JobFit" element={<ExternalRedirect to="https://jobfit.hxndev.com" />} />
+          <Route path="/JobFit/*" element={<ExternalRedirect to="https://jobfit.hxndev.com" />} />
+          <Route path="*" element={<Page><NotFound /></Page>} />
         </Routes>
       </Suspense>
     </AnimatePresence>
@@ -71,6 +82,8 @@ function App() {
         <SmoothScroll>
           <Navbar />
           <PlayMode />
+          <CommandPalette />
+          <CheatCode />
           <main style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s ease' }}>
             <AnimatedRoutes />
           </main>

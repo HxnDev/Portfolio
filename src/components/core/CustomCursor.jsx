@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * A dual-layer cursor: a tiny dot that tracks the pointer 1:1 and a larger ring
- * that trails with easing. Over interactive elements it expands; over elements
- * with a `data-cursor-label` it morphs into a labelled disc (e.g. "Open").
+ * A single morphing cursor: a crisp dot that tracks the pointer 1:1 (zero lag),
+ * grows into a thin ring over interactive elements, and becomes a labelled disc
+ * over elements with `data-cursor-label`. Hidden while a native <dialog> is open
+ * (the top layer renders above everything, so we fall back to the system cursor).
  * Disabled on touch / coarse pointers.
  */
 const CustomCursor = () => {
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
+  const elRef = useRef(null);
   const labelRef = useRef(null);
 
   useEffect(() => {
@@ -17,74 +17,45 @@ const CustomCursor = () => {
 
     document.body.classList.add('has-custom-cursor');
 
-    const dot = dotRef.current;
-    const ring = ringRef.current;
+    const el = elRef.current;
     const label = labelRef.current;
 
-    const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
-    const ringPos = { ...mouse };
-    const mode = { current: 'default' };
-    let rafId;
-
     const move = e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
     };
 
-    const render = () => {
-      // Snappier when labelled so the disc keeps up with reading.
-      const ease = mode.current === 'label' ? 0.28 : 0.2;
-      ringPos.x += (mouse.x - ringPos.x) * ease;
-      ringPos.y += (mouse.y - ringPos.y) * ease;
-      const scale = mode.current === 'hover' ? 1.7 : 1;
-      ring.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%) scale(${scale})`;
-      rafId = requestAnimationFrame(render);
-    };
-
-    // mouseover bubbles and fires on every element entered, so we can derive
-    // the current mode purely from the element under the cursor.
+    // mouseover bubbles on every element entered, so the current mode is
+    // derived purely from the element under the pointer.
     const over = e => {
       const labelEl = e.target.closest('[data-cursor-label]');
       const interactive = e.target.closest('a, button, input, textarea, [data-cursor="hover"]');
       if (labelEl) {
-        mode.current = 'label';
         label.textContent = labelEl.getAttribute('data-cursor-label');
-        ring.classList.add('is-label');
-        ring.classList.remove('is-hovering');
+        el.classList.add('is-label');
+        el.classList.remove('is-hover');
       } else if (interactive) {
-        mode.current = 'hover';
-        ring.classList.add('is-hovering');
-        ring.classList.remove('is-label');
+        el.classList.add('is-hover');
+        el.classList.remove('is-label');
         label.textContent = '';
       } else {
-        mode.current = 'default';
-        ring.classList.remove('is-hovering', 'is-label');
+        el.classList.remove('is-hover', 'is-label');
         label.textContent = '';
       }
     };
 
-    const down = () => ring.classList.add('is-down');
-    const up = () => ring.classList.remove('is-down');
-    const leave = () => {
-      dot.style.opacity = '0';
-      ring.style.opacity = '0';
-    };
-    const enter = () => {
-      dot.style.opacity = '1';
-      ring.style.opacity = '1';
-    };
+    const down = () => el.classList.add('is-down');
+    const up = () => el.classList.remove('is-down');
+    const leave = () => (el.style.opacity = '0');
+    const enter = () => (el.style.opacity = '1');
 
-    window.addEventListener('mousemove', move);
+    window.addEventListener('mousemove', move, { passive: true });
     window.addEventListener('mouseover', over);
     window.addEventListener('mousedown', down);
     window.addEventListener('mouseup', up);
     document.addEventListener('mouseleave', leave);
     document.addEventListener('mouseenter', enter);
-    render();
 
     return () => {
-      cancelAnimationFrame(rafId);
       document.body.classList.remove('has-custom-cursor');
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mouseover', over);
@@ -97,72 +68,69 @@ const CustomCursor = () => {
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
-      <div ref={ringRef} className="cursor-ring" aria-hidden="true">
-        <span ref={labelRef} className="cursor-label" />
+      <div ref={elRef} className="cursor" aria-hidden="true">
+        <span ref={labelRef} className="cursor__label" />
       </div>
       <style>{`
-        .cursor-dot,
-        .cursor-ring {
+        .cursor {
           position: fixed;
           top: 0;
           left: 0;
-          border-radius: 50%;
-          pointer-events: none;
           z-index: 99999;
-          will-change: transform;
-        }
-        .cursor-dot {
-          width: 6px;
-          height: 6px;
-          background: var(--cyan);
-          mix-blend-mode: difference;
-          transition: opacity 0.3s ease;
-        }
-        .cursor-ring {
           display: grid;
           place-items: center;
-          width: 40px;
-          height: 40px;
-          border: 1.5px solid rgba(255, 255, 255, 0.55);
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: var(--cyan);
+          box-shadow: 0 0 14px rgba(91, 233, 255, 0.55);
+          pointer-events: none;
+          will-change: transform;
           transition:
-            width 0.3s var(--ease-out),
-            height 0.3s var(--ease-out),
-            background 0.3s ease,
-            border-color 0.3s ease,
+            width 0.22s var(--ease-out),
+            height 0.22s var(--ease-out),
+            background 0.22s ease,
+            border-color 0.22s ease,
+            box-shadow 0.22s ease,
             opacity 0.3s ease;
+          border: 1.5px solid transparent;
         }
-        .cursor-ring.is-hovering {
+        .cursor.is-hover {
+          width: 34px;
+          height: 34px;
+          background: rgba(91, 233, 255, 0.08);
           border-color: var(--cyan);
+          box-shadow: 0 0 22px rgba(91, 233, 255, 0.3);
         }
-        .cursor-ring.is-down {
-          background: rgba(91, 233, 255, 0.15);
+        .cursor.is-down {
+          scale: 0.8;
         }
-        .cursor-ring.is-label {
-          width: 84px;
-          height: 84px;
+        .cursor.is-label {
+          width: 78px;
+          height: 78px;
           background: var(--cyan);
           border-color: transparent;
+          box-shadow: 0 0 34px rgba(91, 233, 255, 0.45);
         }
-        .cursor-label {
+        .cursor__label {
           font-family: var(--font-mono);
-          font-size: 0.66rem;
+          font-size: 0.64rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           color: #07080d;
           opacity: 0;
           transform: scale(0.7);
-          transition: opacity 0.25s ease, transform 0.25s var(--ease-out);
+          transition: opacity 0.2s ease, transform 0.2s var(--ease-out);
         }
-        .cursor-ring.is-label .cursor-label {
+        .cursor.is-label .cursor__label {
           opacity: 1;
           transform: scale(1);
         }
+        /* A native <dialog> top layer paints above everything, so hand the
+           pointer back to the OS while one is open. */
+        body.dialog-open .cursor { opacity: 0 !important; }
         @media (hover: none), (pointer: coarse) {
-          .cursor-dot,
-          .cursor-ring {
-            display: none;
-          }
+          .cursor { display: none; }
         }
       `}</style>
     </>

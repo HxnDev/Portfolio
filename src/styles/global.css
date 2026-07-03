@@ -97,10 +97,12 @@ body {
   position: relative;
 }
 
-/* Hide native cursor on devices that support custom cursor */
+/* Hide native cursor on devices that support custom cursor.
+   While a native <dialog> is open (.dialog-open) the top layer paints above
+   the custom cursor, so the system cursor takes over. */
 @media (hover: hover) and (pointer: fine) {
-  body.has-custom-cursor,
-  body.has-custom-cursor * {
+  body.has-custom-cursor:not(.dialog-open),
+  body.has-custom-cursor:not(.dialog-open) * {
     cursor: none !important;
   }
 }

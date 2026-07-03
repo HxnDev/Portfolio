@@ -1,6 +1,52 @@
 {
   "projects": [
     {
+      "id": "bitebook",
+      "title": "BiteBook",
+      "description": "A shared family recipe book that feels like a flagship product — photos, flexible ingredients, and per-100g macros, live at bitebook.hxndev.com.",
+      "longDescription": "BiteBook turns scattered recipe notes into a living cookbook. Recipes carry compressed photo uploads, flexible ingredient lines, step-by-step instructions and manually entered macros normalized per 100g. There is no login — anyone in the family with the link can browse, add and edit. Data lives in Supabase (Postgres + Storage) with a full IndexedDB fallback so the app also runs local-first and offline. The landing page is a motion-first experience: an animated GLSL hero, GSAP scroll narrative and smooth Lenis scrolling, all with a prefers-reduced-motion fallback.",
+      "image": "images/projects/bitebook.jpg",
+      "fallbackImage": "https://placehold.co/600x400/FF9D2E/FFFFFF?text=BiteBook",
+      "technologies": ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "GSAP", "React Three Fiber", "TanStack Query"],
+      "githubUrl": "https://github.com/HxnDev/BiteBook",
+      "liveUrl": "https://bitebook.hxndev.com",
+      "featured": true,
+      "category": "web",
+      "date": "2026",
+      "features": [
+        "Photo uploads with client-side compression",
+        "Manual macros per 100g from batch weight",
+        "Search, category filters, sorting and group-by-month",
+        "Multi-select delete across the recipe grid",
+        "Supabase Postgres + Storage with IndexedDB offline fallback",
+        "Animated GLSL hero with GSAP scroll narrative",
+        "prefers-reduced-motion fallback throughout"
+      ]
+    },
+    {
+      "id": "jobtracker",
+      "title": "JobTracker",
+      "description": "A live job-application dashboard where a Google Sheet stays the database — browser-only OAuth, real CRUD and analytics, live at jobs.hxndev.com.",
+      "longDescription": "JobTracker is a modern interface for my Switzerland job-application tracker. The Google Sheet remains the single source of truth: the app reads it, renders it beautifully, and writes changes straight back through the Google Sheets API using browser-only OAuth (Google Identity Services) — no backend, no database, no server. It handles the messy real-world sheet gracefully: mixed date formats, typos like 'Hybird', and hidden =HYPERLINK() formulas are all parsed correctly, while formula columns are never overwritten. An analytics dashboard adds KPIs and charts for applications over time, status breakdown, top locations and work modes.",
+      "image": "images/projects/jobtracker.jpg",
+      "fallbackImage": "https://placehold.co/600x400/6FA8FF/FFFFFF?text=JobTracker",
+      "technologies": ["React", "Vite", "Tailwind CSS", "Radix UI", "Framer Motion", "Google Sheets API", "OAuth 2.0", "Recharts"],
+      "githubUrl": "https://github.com/HxnDev/JobTracker",
+      "liveUrl": "https://jobs.hxndev.com",
+      "featured": true,
+      "category": "web",
+      "date": "2026",
+      "features": [
+        "Google Sheet as the live database — reads and writes",
+        "Browser-only OAuth, no client secret or backend",
+        "Full CRUD: add, edit, change status, open job links",
+        "Search, filter and sort by status, work mode, city and date",
+        "Analytics dashboard with KPIs and charts",
+        "Parses messy data: mixed date formats and hidden HYPERLINK formulas",
+        "Never overwrites spreadsheet formula columns"
+      ]
+    },
+    {
       "id": "jobfit",
       "title": "JobFit",
       "description": "A comprehensive job matching and recommendation platform that uses AI to connect job seekers with suitable opportunities.",
@@ -9,7 +55,7 @@
       "fallbackImage": "https://placehold.co/600x400/9B00FF/FFFFFF?text=JobFit",
       "technologies": ["Python", "Machine Learning", "NLP", "Flask", "React"],
       "githubUrl": "https://github.com/HxnDev/JobFit",
-      "liveUrl": "https://hxndev.github.io/JobFit/",
+      "liveUrl": "https://jobfit.hxndev.com",
       "featured": true,
       "category": "ai",
       "date": "2023",

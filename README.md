@@ -10,6 +10,12 @@ Live: **[https://hxndev.com](https://hxndev.com)**
 - **Hand-written GLSL.** A custom aurora backdrop shader (domain-warped fractal noise) — no Spline, no shader libraries — that reacts to the cursor and refracts through the glass.
 - **"Aurora Noir" design system.** Deep near-black canvas with an electric-cyan primary and a warm-amber accent. Cyan + amber sit on the blue–yellow axis, the most colorblind-safe high-contrast pairing, so hierarchy reads through luminance *and* hue.
 - **Buttery motion.** Lenis momentum scrolling synced to GSAP, a magnetic custom cursor, and Framer Motion reveals.
+- **Terminal boot preloader.** The site boots like a shell — a zsh-style window types through a fake boot log (`npx hxndev@latest boot`) before the curtain lifts.
+- **Interactive terminal.** A real, working shell at `/terminal` (reachable from the homepage teaser, footer, mobile menu and ⌘K): `help`, `projects`, `open <id>`, `skills`, `neofetch`, tab-completion, arrow-key history — and `sudo hire-me`.
+- **⌘K command palette.** A hand-rolled command palette (no cmdk dependency) rendered in the browser top layer via a native `<dialog>` — fuzzy-search every page, project and action (download résumé, copy email, toggle play mode) from anywhere.
+- **Play mode.** An opt-in mini-game: the cursor becomes a rocket, collectible orbs are scattered down the page, and a confetti win dialog tops it off. Auto-disabled on touch and reduced-motion.
+- **Cheat code.** Type `play` anywhere on the site and the rocket game launches with a toast.
+- **Designed 404.** Wrong URLs get a custom "lost in the aurora" page instead of a silent redirect.
 - **Performance-conscious.** Device-tiered 3D quality, clamped DPR, off-screen render pausing, lazy-loaded routes, and full `prefers-reduced-motion` support.
 
 ## Tech Stack
@@ -23,7 +29,7 @@ Live: **[https://hxndev.com](https://hxndev.com)**
 - **Framer Motion** — UI transitions and staggered reveals.
 - **Tabler Icons** — iconography.
 - **ESLint** + **Prettier** — code quality and formatting.
-- **GitHub Actions** + **GitHub Pages** — CI/CD and hosting.
+- **Vercel** — hosting with SPA rewrites (`vercel.json`), custom domain `hxndev.com`.
 
 ## Getting Started
 
@@ -63,7 +69,9 @@ hxndev.github.io/
 ├── src/
 │   ├── components/
 │   │   ├── common/           # Marquee and shared bits
-│   │   ├── core/             # Cursor, SmoothScroll, Preloader, Grain, Magnetic
+│   │   ├── core/             # Cursor, SmoothScroll, Preloader (terminal boot),
+│   │   │                     #   Grain, Magnetic, CommandPalette (⌘K)
+│   │   ├── game/             # PlayMode (rocket game), CheatCode, GameProvider
 │   │   ├── home/             # CinematicStage (the scroll-driven hero)
 │   │   ├── layout/           # Navbar, Footer
 │   │   ├── projects/         # ProjectCard, ProjectModal
@@ -73,7 +81,7 @@ hxndev.github.io/
 │   │                         #   recommendations, projects.json
 │   ├── hooks/                # useGetProjects, useScrollReveal
 │   ├── pages/                # Home, Projects, About, Certifications,
-│   │                         #   Recommendations, Contact
+│   │                         #   Recommendations, Contact, Terminal, NotFound
 │   ├── styles/               # global.css (design tokens), ui.css
 │   ├── App.jsx               # Routing + global layout
 │   └── main.jsx              # Entry point
@@ -90,7 +98,14 @@ hxndev.github.io/
 
 ## Deployment
 
-Every push to `main` triggers a GitHub Actions workflow that builds the app and publishes `dist/` to the `gh-pages` branch. See `.github/workflows/`.
+Hosted on **Vercel** at [hxndev.com](https://hxndev.com). Every push to `main` triggers an automatic production deployment; `vercel.json` rewrites all routes to `index.html` so React Router deep links work on refresh.
+
+## Sister Projects
+
+Two other live apps on the same domain, both featured on the Work page:
+
+- **[BiteBook](https://bitebook.hxndev.com)** ([repo](https://github.com/HxnDev/BiteBook)) — a shared family recipe book with photos and per-100g macros. React + TypeScript + Supabase, with an IndexedDB offline fallback.
+- **[JobTracker](https://jobs.hxndev.com)** ([repo](https://github.com/HxnDev/JobTracker)) — a job-application dashboard where a Google Sheet stays the database, via browser-only OAuth. No backend.
 
 ## License
 
@@ -103,4 +118,4 @@ Distributed under the MIT License. See `LICENSE` for details.
 - Email: [hassanshahzad.dev@gmail.com](mailto:hassanshahzad.dev@gmail.com)
 - LinkedIn: [hassan-shahzad-2a6617212](https://www.linkedin.com/in/hassan-shahzad-2a6617212/)
 - GitHub: [HxnDev](https://github.com/HxnDev)
-- Portfolio: [https://hxndev.github.io/](https://hxndev.github.io/)
+- Portfolio: [https://hxndev.com](https://hxndev.com)

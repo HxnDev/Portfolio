@@ -141,8 +141,10 @@ const GameStage = ({ onExit }) => {
   useEffect(() => {
     const d = dlgRef.current;
     if (!d) return;
+    document.body.classList.toggle('dialog-open', finished);
     if (finished && !d.open) d.showModal();
     else if (!finished && d.open) d.close();
+    return () => document.body.classList.remove('dialog-open');
   }, [finished]);
 
   // Build a fresh field + run the loop for each round.
@@ -376,8 +378,7 @@ const GameStage = ({ onExit }) => {
       </dialog>
 
       <style>{`
-        body.is-playing .cursor-dot,
-        body.is-playing .cursor-ring { opacity: 0 !important; }
+        body.is-playing .cursor { opacity: 0 !important; }
 
         .game__field {
           position: absolute;

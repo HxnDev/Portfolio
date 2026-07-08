@@ -1,11 +1,9 @@
-// LinkedIn recommendations. Each entry: { name, title, relation, date, url?, quote }.
-// `url` links to the recommender's LinkedIn profile when available.
-
 export const RECOMMENDATIONS = [
   {
     name: 'Enrico Eberhard',
     title: 'CTO & Co-Founder @ AICA',
     relation: 'Managed Hassan directly',
+    group: 'managers',
     date: 'Jul 2026',
     url: 'https://www.linkedin.com/in/enricoeberhard/',
     quote:
@@ -114,6 +112,7 @@ export const RECOMMENDATIONS = [
     name: 'Shafaq Amir',
     title: 'Delivery Manager · Business Transformation & Strategy',
     relation: 'Managed Hassan directly',
+    group: 'managers',
     date: 'Sep 2023',
     url: null,
     quote:
@@ -141,6 +140,7 @@ export const RECOMMENDATIONS = [
     name: 'Muhammad Azfar Mustafa',
     title: 'Senior Managing Consultant · Management & Strategy',
     relation: 'Managed Hassan directly',
+    group: 'managers',
     date: 'Sep 2023',
     url: null,
     quote:

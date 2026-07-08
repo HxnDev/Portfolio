@@ -1,4 +1,5 @@
-import { IconQuote, IconBrandLinkedin } from '@tabler/icons-react';
+import { useMemo, useState } from 'react';
+import { IconQuote, IconBrandLinkedin, IconCrown, IconUsersGroup } from '@tabler/icons-react';
 import { RECOMMENDATIONS } from '@/data/recommendations';
 
 const initials = name =>
@@ -8,7 +9,32 @@ const initials = name =>
     .slice(0, 2)
     .join('');
 
+const TABS = [
+  {
+    id: 'managers',
+    label: 'Managers',
+    icon: IconCrown,
+    lead: 'See what Hassan’s managers say about him — the people who hired him, set the bar, and reviewed the results.',
+  },
+  {
+    id: 'colleagues',
+    label: 'Colleagues',
+    icon: IconUsersGroup,
+    lead: 'See what Hassan’s colleagues say about him — teammates, cross-team partners, and engineers he mentored.',
+  },
+];
+
 const Recommendations = () => {
+  const [tab, setTab] = useState('managers');
+
+  const grouped = useMemo(() => {
+    const managers = RECOMMENDATIONS.filter(r => r.group === 'managers');
+    return { managers, colleagues: RECOMMENDATIONS.filter(r => !managers.includes(r)) };
+  }, []);
+
+  const active = TABS.find(t => t.id === tab);
+  const visible = grouped[tab];
+
   return (
     <>
       <div className="aurora" aria-hidden="true" />
@@ -22,13 +48,29 @@ const Recommendations = () => {
             <span className="gradient-text">Recommendations</span>
           </h1>
           <p className="page-lead" data-reveal data-reveal-delay={140}>
-            What colleagues, leads, and teammates have said about working with me.
+            {active.lead}
           </p>
         </div>
 
-        <div className="recs">
-          {RECOMMENDATIONS.map((rec, i) => (
-            <figure className="rec" key={rec.name + i} data-reveal data-reveal-delay={(i % 2) * 80}>
+        <div className="rec-tabs" role="tablist" aria-label="Recommendation groups" data-reveal>
+          {TABS.map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              role="tab"
+              aria-selected={tab === id}
+              className={`rec-tab ${tab === id ? 'is-active' : ''}`}
+              onClick={() => setTab(id)}
+            >
+              <Icon size={16} />
+              <span>{label}</span>
+              <span className="rec-tab__count">{grouped[id].length}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="recs" key={tab}>
+          {visible.map((rec, i) => (
+            <figure className="rec" key={rec.name} style={{ animationDelay: `${(i % 3) * 70}ms` }}>
               <IconQuote className="rec__mark" size={34} />
               <blockquote className="rec__quote">{rec.quote}</blockquote>
               <figcaption className="rec__by">
@@ -66,6 +108,43 @@ const Recommendations = () => {
           line-height: 0.95;
         }
         .page-lead { color: var(--ink-dim); font-size: clamp(1rem, 2.2vw, 1.2rem); max-width: 56ch; }
+        .rec-tabs {
+          display: inline-flex;
+          gap: 0.3rem;
+          padding: 0.3rem;
+          margin-bottom: 2rem;
+          border-radius: 99px;
+          border: 1px solid var(--line);
+          background: rgba(255, 255, 255, 0.02);
+        }
+        .rec-tab {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.6rem 1.15rem;
+          border-radius: 99px;
+          color: var(--ink-dim);
+          font-size: 0.9rem;
+          font-weight: 500;
+          transition: color 0.25s ease, background 0.25s ease;
+        }
+        .rec-tab:hover { color: var(--ink); }
+        .rec-tab.is-active {
+          color: #07080d;
+          background: var(--ink);
+        }
+        .rec-tab__count {
+          font-family: var(--font-mono);
+          font-size: 0.7rem;
+          padding: 0.1rem 0.45rem;
+          border-radius: 99px;
+          background: rgba(91, 233, 255, 0.14);
+          color: var(--cyan);
+        }
+        .rec-tab.is-active .rec-tab__count {
+          background: rgba(7, 8, 13, 0.16);
+          color: #07080d;
+        }
         .recs {
           columns: 3;
           column-gap: 1.4rem;
@@ -85,7 +164,16 @@ const Recommendations = () => {
           background: var(--bg-elev);
           overflow: hidden;
           break-inside: avoid;
+          animation: rec-in 0.45s var(--ease-out) both;
         }
+        @keyframes rec-in {
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .rec { animation: none; }
+        }
+        body.recruiter-mode .rec { animation: none; }
         .rec::before {
           content: '';
           position: absolute;

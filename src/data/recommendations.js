@@ -3,11 +3,20 @@
 
 export const RECOMMENDATIONS = [
   {
+    name: 'Enrico Eberhard',
+    title: 'CTO & Co-Founder @ AICA',
+    relation: 'Managed Hassan directly',
+    date: 'Jul 2026',
+    url: 'https://www.linkedin.com/in/enricoeberhard/',
+    quote:
+      "I hired and managed Hassan to work as a Frontend Engineer for AICA, a Swiss robotics software startup, for nearly 1.5 years. Our product is highly complex, featuring an interactive node-based canvas with various interactions for configuring, connecting and editing procedural components. In addition, the UI is animated from high-frequency robotics data showing live telemetry and states in dashboard widgets, 2D graph and 3D scene views. During his time at AICA, Hassan showed strong proficiency in modern Typescript and React to implement code changes for new features or bug fixes. He worked very effectively with our UX/UI designer to give early feedback on both technical feasibility and usability, and then always perfectly matched the agreed Figma design with his implementations (tailwind, flowbite, CSS). He also owned the delivery of several standalone features, including robust undo/redo and versioning features in the application editor and a fully customizable viewer page for efficiently arranging the various data views depending on user preferences. Hassan used AI tools effectively to accelerate his work, but consistently showed independent understanding of his contributions as needed. He is a friendly, helpful and motivated professional who clearly invests in his development and career by seeking and acting on feedback and technical or project management courses. I would recommend Hassan for any remote / hybrid web development or Frontend Engineer roles.",
+  },
+  {
     name: 'Mitra Gholami',
     title: 'Robotics Engineer @ AICA',
     relation: 'Worked with Hassan at AICA on different teams',
     date: 'Jul 2026',
-    url: null,
+    url: 'https://www.linkedin.com/in/mitra-gholami/',
     quote:
       "I had the pleasure of working with Hassan Shahzad for the past four months at AICA SA. Although I'm still early in my career, working alongside him has been a great experience. Hassan is a highly skilled frontend engineer who delivers clean, maintainable code and approaches problems with a thoughtful and structured mindset. But beyond his strong technical abilities, what stood out most for me was his patience and willingness to help others and team members, either through explaining technical concepts or providing constructive feedback. I particularly appreciated his balance between attention to details and keeping projects moving forward. His positive attitude and collaborative approach made him someone everyone enjoyed working with. I highly recommend Hassan to anyone looking for a talented frontend engineer who is a good team player as well.",
   },

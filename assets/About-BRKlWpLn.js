@@ -1,4 +1,4 @@
-import{j as e}from"./motion-BCcaUrQT.js";import{r as n}from"./paths-Bu_35hHc.js";import{B as o,a as d}from"./skills-D7m0TPy3.js";import{I as c,R as m}from"./recommendations-Cb-EjUTR.js";import{I as p,C as h}from"./certifications-DJE0sPXI.js";import{c as u,L as s,I as r}from"./index-Ck62fvnP.js";import{I as g}from"./IconMapPin-ChxQZZNI.js";import"./r3f-O0cwfIJe.js";import"./three-C3Zk3Umg.js";/**
+import{j as e}from"./motion-BCcaUrQT.js";import{r as n}from"./paths-Bu_35hHc.js";import{B as o,a as d}from"./skills-D7m0TPy3.js";import{I as c,R as m}from"./recommendations-C2xQDO5K.js";import{I as p,C as h}from"./certifications-BwQ8Z0_V.js";import{c as u,L as s,I as r}from"./index-clc8zXk8.js";import{I as g}from"./IconMapPin-BB_vUak7.js";import"./r3f-O0cwfIJe.js";import"./three-C3Zk3Umg.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -269,4 +269,4 @@ import{j as e}from"./motion-BCcaUrQT.js";import{r as n}from"./paths-Bu_35hHc.js"
           .creds { grid-template-columns: 1fr; }
         }
       `})]});export{C as default};
-//# sourceMappingURL=About-YjTnXtyN.js.map
+//# sourceMappingURL=About-BRKlWpLn.js.map

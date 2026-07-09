@@ -1,4 +1,4 @@
-import{a as t,j as e}from"./motion-BCcaUrQT.js";import{R as o,I as g}from"./recommendations-BKfLRvhS.js";import{c,d as h}from"./index-C2xNo2s1.js";import"./r3f-O0cwfIJe.js";import"./three-C3Zk3Umg.js";/**
+import{a as t,j as e}from"./motion-BCcaUrQT.js";import{R as o,I as g}from"./recommendations-CcqAqO5J.js";import{c,d as h}from"./index-CMD_laD8.js";import"./r3f-O0cwfIJe.js";import"./three-C3Zk3Umg.js";/**
  * @license @tabler/icons-react v3.44.0 - MIT
  *
  * This source code is licensed under the MIT license.
@@ -136,4 +136,4 @@ import{a as t,j as e}from"./motion-BCcaUrQT.js";import{R as o,I as g}from"./reco
           .recs { columns: 1; }
         }
       `})]})};export{w as default};
-//# sourceMappingURL=Recommendations-CHkEarY9.js.map
+//# sourceMappingURL=Recommendations-CYtdOmDu.js.map

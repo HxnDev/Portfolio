@@ -1,5 +1,15 @@
 export const RECOMMENDATIONS = [
   {
+    name: 'Dominic Reber',
+    title: 'Head of Engineering and Robotics @ AICA',
+    relation: 'Managed Hassan directly',
+    group: 'managers',
+    date: 'Jul 2026',
+    url: 'https://www.linkedin.com/in/dominic-reber/',
+    quote:
+      "I highly recommend Hassan, he is consistently reliable, detailed-oriented, and a great teammate. They bring a strong work ethic to everything they do and always ensure their projects are completed successfully. Hassan would be a valuable addition to any team.",
+  },
+  {
     name: 'Enrico Eberhard',
     title: 'CTO & Co-Founder @ AICA',
     relation: 'Managed Hassan directly',

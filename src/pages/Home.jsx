@@ -107,7 +107,7 @@ const Home = () => {
             </h2>
           </div>
           <Link to="/recommendations" className="btn btn--ghost" data-reveal data-reveal-delay={120}>
-            <span>All 16 recommendations</span>
+            <span>All {RECOMMENDATIONS.length} recommendations</span>
             <IconArrowUpRight size={17} />
           </Link>
         </div>

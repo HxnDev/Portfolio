@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { IconQuote, IconBrandLinkedin, IconCrown, IconUsersGroup } from '@tabler/icons-react';
+import { IconQuote, IconCrown, IconUsersGroup } from '@tabler/icons-react';
 import { RECOMMENDATIONS } from '@/data/recommendations';
 
 const initials = name =>
@@ -76,19 +76,7 @@ const Recommendations = () => {
               <figcaption className="rec__by">
                 <span className="rec__avatar">{initials(rec.name)}</span>
                 <span className="rec__meta">
-                  {rec.url ? (
-                    <a
-                      href={rec.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rec__name"
-                    >
-                      {rec.name}
-                      <IconBrandLinkedin size={15} />
-                    </a>
-                  ) : (
-                    <span className="rec__name">{rec.name}</span>
-                  )}
+                  <span className="rec__name">{rec.name}</span>
                   {rec.title && <span className="rec__title">{rec.title}</span>}
                   {rec.relation && <span className="rec__relation">{rec.relation}</span>}
                 </span>

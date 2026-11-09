@@ -4,6 +4,8 @@ The six featured recordings are stored in `public/assets/gifs/`: `viora.gif`, `n
 
 The homepage and project collection share the same media data in `src/data/projects.json`. Homepage cards alternate left/right media on desktop and stack media first on smaller screens. The homepage uses equal 5:4 stages; collection cards use equal 16:10 stages. Portrait footage is centered in a phone bezel and landscape footage in a browser panel. Contain sizing preserves the complete interface.
 
+Bezel colors stay fixed across themes: Viora and Odyssey use black, Nexus and Afterlight use white, and JobFit and ManCave use dark. Set `media.bezel` to `black`, `white` or `dark` when replacing a preview.
+
 ## Replace a recording
 
 Replace its GIF and update its still preview in `public/images/projects/`. Keep these media fields in the matching project:
@@ -12,6 +14,7 @@ Replace its GIF and update its still preview in `public/images/projects/`. Keep 
 "media": {
   "src": "/assets/gifs/viora.gif",
   "kind": "gif",
+  "bezel": "black",
   "orientation": "portrait",
   "poster": "/images/projects/viora-poster.jpg"
 }

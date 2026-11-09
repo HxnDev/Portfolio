@@ -8,7 +8,7 @@
 - Browse in neutral charcoal and warm-white themes, with slowly drifting background nodes.
 - See blue IBM and transparent FAST logos in experience and education, while the organization strip returns to monochrome marks without panels.
 - Open project demos and GitHub directly without an extra project-details button.
-- See consistent black phone and browser frames around project recordings in both themes.
+- See project-matched frames in both themes: black for Viora and Odyssey, white for Nexus and Afterlight, and dark for JobFit and ManCave.
 
 - Watch six project previews directly in the homepage and project collection, ordered Viora, Nexus, Odyssey, Afterlight, JobFit and ManCave.
 - Explore alternating featured project layouts with clearer project types and direct demo and code links where available.

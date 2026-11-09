@@ -1933,29 +1933,39 @@ textarea:hover {
   );
 }
 
-.recording-device,
+.recording-device {
+  --bezel: #181818;
+  --bezel-border: #555;
+  --bezel-detail: #8e8e8e;
+  --bezel-text: #c4c4c4;
+  background: var(--bezel);
+  border-color: var(--bezel-border);
+}
+.recording-device.bezel-black {
+  --bezel: #080808;
+  --bezel-detail: #303030;
+}
+.recording-device.bezel-white {
+  --bezel: #fff;
+  --bezel-border: #d3d3d3;
+  --bezel-detail: #b8b8b8;
+  --bezel-text: #555;
+}
 .recording-screen,
 .recording-content {
   background: #080808;
 }
-.recording-device {
-  border-color: #555;
-}
-.recording-chrome {
-  background: #151515;
-  border-color: #303030;
+.recording-chrome,
+.recording-phone .recording-chrome {
+  background: var(--bezel);
+  border-color: var(--bezel-border);
 }
 .recording-browser .recording-chrome span {
-  color: #b8b8b8;
+  color: var(--bezel-text);
 }
-.recording-browser .recording-chrome i {
-  background: #8e8e8e;
-}
-.recording-phone .recording-chrome {
-  background: #080808;
-}
+.recording-browser .recording-chrome i,
 .recording-phone .recording-chrome span {
-  background: #292929;
+  background: var(--bezel-detail);
 }
 @media (prefers-reduced-motion: reduce) {
   html {

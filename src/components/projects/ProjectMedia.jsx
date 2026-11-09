@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-/** @param {{project: {title: string, media?: {src?: string, kind?: string, orientation?: string, poster?: string}}}} props */
+/** @param {{project: {title: string, media?: {src?: string, kind?: string, orientation?: string, poster?: string, bezel?: string}}}} props */
 export default function ProjectMedia({ project }) {
   const media = project.media || {};
   const portrait = media.orientation === 'portrait';
@@ -29,7 +29,14 @@ export default function ProjectMedia({ project }) {
   }, []);
   return (
     <div className="project-media" ref={stage}>
-      <div className={'recording-device ' + (portrait ? 'recording-phone' : 'recording-browser')}>
+      <div
+        className={
+          'recording-device bezel-' +
+          (media.bezel || 'dark') +
+          ' ' +
+          (portrait ? 'recording-phone' : 'recording-browser')
+        }
+      >
         <div className="recording-chrome" aria-hidden="true">
           {portrait ? (
             <span />

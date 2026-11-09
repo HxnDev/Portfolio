@@ -17,7 +17,8 @@
         "orientation": "portrait",
         "src": "/assets/gifs/viora.gif",
         "kind": "gif",
-        "poster": "/images/projects/viora-poster.jpg"
+        "poster": "/images/projects/viora-poster.jpg",
+        "bezel": "black"
       },
       "featured": true,
       "overview": "Food diaries, workouts, health data and progress tracking, with local storage and encrypted backups.",
@@ -43,7 +44,8 @@
         "orientation": "portrait",
         "src": "/assets/gifs/nexus.gif",
         "kind": "gif",
-        "poster": "/images/projects/nexus-poster.jpg"
+        "poster": "/images/projects/nexus-poster.jpg",
+        "bezel": "white"
       },
       "featured": true,
       "overview": "A connected workspace for notes, tasks, events and reminders, with device-calendar integration and offline storage.",
@@ -68,7 +70,8 @@
         "orientation": "portrait",
         "src": "/assets/gifs/odyssey.gif",
         "kind": "gif",
-        "poster": "/images/projects/odyssey-poster.jpg"
+        "poster": "/images/projects/odyssey-poster.jpg",
+        "bezel": "black"
       },
       "featured": true,
       "overview": "An offline world map, trip archive, flight tracking and travel statistics in one mobile companion.",
@@ -88,7 +91,8 @@
         "orientation": "portrait",
         "src": "/assets/gifs/afterlight.gif",
         "kind": "gif",
-        "poster": "/images/projects/afterlight-poster.jpg"
+        "poster": "/images/projects/afterlight-poster.jpg",
+        "bezel": "white"
       },
       "featured": true,
       "overview": "A focused film and series directory with poster search, personal notes and watch-status tracking. The standalone app is in development.",
@@ -121,7 +125,8 @@
         "orientation": "landscape",
         "src": "/assets/gifs/jobfit.gif",
         "kind": "gif",
-        "poster": "/images/projects/jobfit-poster.jpg"
+        "poster": "/images/projects/jobfit-poster.jpg",
+        "bezel": "dark"
       },
       "overview": "A job matching platform with r\u00e9sum\u00e9 analysis, skill assessment and personalized recommendations.",
       "projectType": "AI job matching platform"
@@ -144,7 +149,8 @@
         "orientation": "landscape",
         "src": "/assets/gifs/mancave.gif",
         "kind": "gif",
-        "poster": "/images/projects/mancave-poster.jpg"
+        "poster": "/images/projects/mancave-poster.jpg",
+        "bezel": "dark"
       },
       "featured": true,
       "overview": "A collection vault across web and mobile, with customizable categories, photos, search and dashboards.",

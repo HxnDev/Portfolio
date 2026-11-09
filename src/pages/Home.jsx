@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   IconArrowUpRight,
-  IconCode,
-  IconStack2,
+  IconArrowDown,
+  IconMapPin,
   IconCloud,
   IconDeviceDesktop,
   IconServer,
@@ -12,9 +12,10 @@ import {
 import Globe from '../components/home/Globe';
 import ContactSection from '../components/home/ContactSection';
 import Section from '../components/common/Section';
+import Reveal from '../components/common/Reveal';
 import { ExperienceCard, RecommendationCard, CertificationCard } from '../components/common/Cards';
 import ProjectCard from '../components/projects/ProjectCard';
-import { EXPERIENCE } from '../data/experience';
+import { EXPERIENCE, EDUCATION } from '../data/experience';
 import { RECOMMENDATIONS } from '../data/recommendations';
 import { FEATURED_CERTIFICATIONS, SKILL_GROUPS } from '../data/overview';
 import { projects } from '../data/projects.json';
@@ -22,141 +23,163 @@ import { projects } from '../data/projects.json';
 const skillIcons = [IconDeviceDesktop, IconServer, IconCloud, IconSettings];
 export default function Home() {
   useEffect(() => {
-    document.title = 'Hassan Shahzad | Full-stack engineer';
+    document.title = 'Hassan Shahzad | Senior Full-Stack Engineer';
   }, []);
   return (
     <>
-      <div className="intro-world">
-        <svg
-          className="network"
-          viewBox="0 0 1200 900"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden="true"
-        >
-          <g fill="none" stroke="currentColor" strokeWidth="0.6">
-            <path d="M0 180 230 60 420 210 660 30 950 120 1200 0M0 180 150 430 420 210 550 460 950 120 1140 400 1200 0M0 650 150 430 330 650 550 460 800 600 1140 400 1200 730M230 60 150 430M420 210 800 600 950 120M330 650 660 810 800 600 1050 850 1200 730M0 650 330 650 660 810" />
-          </g>
-          <g fill="currentColor">
-            {[
-              [230, 60],
-              [420, 210],
-              [660, 30],
-              [950, 120],
-              [150, 430],
-              [550, 460],
-              [1140, 400],
-              [330, 650],
-              [800, 600],
-            ].map(([cx, cy]) => (
-              <circle key={cx} cx={cx} cy={cy} r="2.3" />
-            ))}
-          </g>
-        </svg>
-        <section className="container hero" id="home" tabIndex={-1} aria-labelledby="hero-title">
+      <section className="hero" id="home" tabIndex={-1} aria-labelledby="hero-title">
+        <Globe />
+        <div className="container hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow">
-              Hassan Shahzad <span> / </span> Geneva, CH
-            </p>
+            <p className="eyebrow hero-welcome">Hello, I’m glad you’re here</p>
             <h1 id="hero-title">
-              Engineering ideas.
+              I’m Hassan
               <br />
-              Building experiences.
+              Shahzad<span>.</span>
             </h1>
+            <p className="hero-role">Senior Full-Stack Engineer</p>
             <p className="hero-lead">
-              Senior full-stack engineer creating intuitive interfaces and reliable systems.
+              I build software people rely on. From robotics at AICA to research at EPFL and
+              enterprise systems at IBM.
             </p>
             <div className="actions">
               <Link to="/#projects" className="button primary">
-                View my work <IconArrowUpRight size={18} />
+                Explore my work <IconArrowUpRight size={18} />
               </Link>
               <Link to="/#contact" className="button secondary">
-                Get in touch
+                Let’s talk
               </Link>
             </div>
             <dl className="stats">
               <div>
-                <IconStack2 size={25} stroke={1.5} />
-                <dt>6+ years</dt>
-                <dd>experience</dd>
+                <dt>6+</dt>
+                <dd>Years of experience</dd>
               </div>
               <div>
-                <IconCode size={25} stroke={1.5} />
                 <dt>40+</dt>
-                <dd>projects</dd>
+                <dd>Projects delivered</dd>
+              </div>
+              <div>
+                <dt>
+                  <IconMapPin size={18} />
+                  Geneva
+                </dt>
+                <dd>Switzerland</dd>
               </div>
             </dl>
           </div>
-          <Globe />
-        </section>
-        <section
-          className="container about-section"
-          id="about"
-          tabIndex={-1}
-          aria-labelledby="about-title"
-          data-reveal
+        </div>
+        <Link
+          to="/#organizations"
+          className="scroll-cue"
+          aria-label="Explore organizations and experience"
         >
-          <div className="about-monogram">HS</div>
-          <div>
-            <h2 id="about-title">A little about me.</h2>
-            <p>
-              From robotics interfaces to research platforms, I turn complex problems into intuitive
-              software. Based in Geneva, I bring 6+ years of experience building applications and
-              leading teams.
-            </p>
-            <p className="meta">BSc Computer Science · FAST–NUCES</p>
-            <a
-              className="more-link"
-              href="/assets/resume/hassan_resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Download résumé <IconArrowUpRight size={17} />
-            </a>
+          <IconArrowDown size={18} />
+          <span>Scroll to explore</span>
+        </Link>
+      </section>
+      <Section
+        id="organizations"
+        title="Organizations I’ve worked with"
+        eyebrow="Across teams, industries and borders"
+        className="organizations-band"
+      >
+        <Reveal>
+          <div className="organization-logos">
+            {[
+              ['aica', 'AICA', 'Engineering'],
+              ['epfl', 'EPFL', 'Research'],
+              ['ibm', 'IBM', 'Enterprise'],
+              ['vodacom', 'Vodacom', 'Client collaboration'],
+            ].map(([id, name, label]) => (
+              <div className="organization" key={id}>
+                <div className="organization-mark">
+                  <img
+                    className={'organization-logo logo-' + id}
+                    src={'/logos/' + id + (id === 'aica' ? '.webp' : '.svg')}
+                    alt={name}
+                    width="150"
+                    height="48"
+                    loading="lazy"
+                  />
+                  {(id === 'vodacom' || id === 'aica') && <strong>{name}</strong>}
+                </div>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
-        </section>
-      </div>
+        </Reveal>
+      </Section>
       <Section
         id="experience"
-        title="Experience that spans industries."
+        title="Professional experience"
+        eyebrow="The work behind the résumé"
         to="/experience"
-        linkLabel="View full experience"
+        linkLabel="Explore my full experience"
       >
-        <div className="employers" aria-label="Experience at AICA, EPFL and IBM">
-          <span>AICA</span>
-          <span>EPFL</span>
-          <span>IBM</span>
-        </div>
-        <div className="grid three">
+        <div className="grid two home-experience">
           {EXPERIENCE.slice(0, 3).map((experience, index) => (
             <ExperienceCard key={experience.company} experience={experience} index={index} />
           ))}
         </div>
       </Section>
-      <Section id="skills" title="Skills & tools.">
+      <Section id="education" title="Education" eyebrow="Where it started">
+        {EDUCATION.map(education => (
+          <Reveal key={education.school}>
+            <article className="card education-feature">
+              <div className="education-identity">
+                <img
+                  src="/logos/fast.png"
+                  alt="FAST–NUCES"
+                  width="180"
+                  height="40"
+                  loading="lazy"
+                />
+                <span className="eyebrow">2018 — 2022</span>
+              </div>
+              <div>
+                <p className="eyebrow">FAST–NUCES · Islamabad, Pakistan</p>
+                <h3>{education.degree}</h3>
+                <p className="muted">{education.school}</p>
+                <a
+                  className="more-link"
+                  href="/assets/resume/hassan_resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View résumé <IconArrowUpRight size={17} />
+                </a>
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </Section>
+      <Section id="skills" title="Skills & tools" eyebrow="From interface to infrastructure">
         <div className="grid four">
           {SKILL_GROUPS.map((group, index) => {
             const Icon = skillIcons[index];
             return (
-              <article className="card skill-card" key={group.name} data-reveal>
-                <h3>
-                  <Icon size={22} stroke={1.5} />
-                  {group.name}
-                </h3>
-                <div className="tags">
-                  {group.skills.map(skill => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
-              </article>
+              <Reveal key={group.name}>
+                <article className="card skill-card">
+                  <Icon size={26} stroke={1.4} />
+                  <h3>{group.name}</h3>
+                  <div className="tags">
+                    {group.skills.map(skill => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                </article>
+              </Reveal>
             );
           })}
         </div>
       </Section>
       <Section
         id="projects"
-        title="Featured projects."
+        title="Selected projects"
+        eyebrow="Ideas turned into working products"
         to="/projects"
-        linkLabel="View all projects"
+        linkLabel="Explore all projects"
       >
         <div className="featured-projects">
           {['jobtracker', 'bitebook'].map(id => (
@@ -166,26 +189,28 @@ export default function Home() {
       </Section>
       <Section
         id="recommendations"
-        title="Trusted by the people I work with."
+        title="What people say"
+        eyebrow="The people behind the work"
         to="/recommendations"
-        linkLabel="View all recommendations"
+        linkLabel="Read all recommendations"
       >
         <div className="grid two">
           <RecommendationCard
             recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Enrico Eberhard')}
-            excerpt="He worked very effectively with our UX/UI designer"
+            excerpt="He worked very effectively with our UX/UI designer to give early feedback on both technical feasibility and usability, and then always perfectly matched the agreed Figma design with his implementations (tailwind, flowbite, CSS)."
           />
           <RecommendationCard
             recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Kajhal Ramsunder')}
-            excerpt="You are always giving us problems with solutions"
+            excerpt="You are always giving us problems with solutions; that is a very rare quality in an individual. You display very good leadership skills, be it on a call with the team or individually."
           />
         </div>
       </Section>
       <Section
         id="certifications"
-        title="Always learning."
+        title="Always learning"
+        eyebrow="Courses & specializations"
         to="/certifications"
-        linkLabel="View all certifications"
+        linkLabel="Browse all certifications"
       >
         <div className="grid three">
           {FEATURED_CERTIFICATIONS.map(certification => (

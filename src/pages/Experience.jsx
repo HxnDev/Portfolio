@@ -10,7 +10,7 @@ export default function Experience() {
       </PageHead>
       <div className="experience-list">
         {EXPERIENCE.map((experience, index) => (
-          <ExperienceCard key={experience.company} experience={experience} index={index} full />
+          <ExperienceCard key={experience.company} experience={experience} index={index} />
         ))}
       </div>
       <div className="section-heading">

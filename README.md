@@ -1,6 +1,6 @@
 # Hassan Shahzad — Portfolio
 
-A lightweight React portfolio at [hxndev.com](https://hxndev.com), with matching charcoal and light themes, an interactive wireframe globe, and a single scrolling overview.
+A lightweight React portfolio at [hxndev.com](https://hxndev.com), with matching monochrome dark and light themes, an interactive network globe, and a single scrolling overview.
 
 ## Local development
 
@@ -23,27 +23,27 @@ JavaScript source is checked with TypeScript (checkJs), ESLint and Prettier. The
 
 ## Navigation and content
 
-- /: Hero → About → Experience → Skills & tools → Featured projects → Recommendations → Certifications → Contact.
+- /: Personal introduction → Organizations → Professional experience → Education → Skills & tools → Selected projects → Recommendations → Certifications → Contact.
 - /experience: full career history and education.
 - /projects: searchable project archive with category filters.
 - /projects/:id: individual descriptions, highlights, technologies, live links and source links.
 - /recommendations: full recommendations, searchable and filterable by relationship.
 - /certifications: full credentials, searchable and filterable by issuer. Credentials without public URLs remain non-clickable.
-- Legacy /about and /contact links return to homepage sections. /terminal returns home. /projects?project=id opens the matching detail page. /JobFit and its child paths still redirect to the standalone app.
+- Legacy /about links return to the introduction; /contact returns to the contact section. /terminal returns home. /projects?project=id opens the matching detail page. /JobFit and its child paths still redirect to the standalone app.
 
-Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Product preview images are existing local assets, not generated representations of functionality. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
+Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Featured projects have interactive, clearly labelled examples with sample content. They do not connect to live applications or personal data. Archive/detail images remain existing local assets. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
 
 ## Performance and motion
 
 - Native scrolling with smooth anchor navigation, without scroll interception or pinned stages.
-- CSS entrances and hover/focus feedback. Content starts visible; reveal effects are progressive enhancements.
-- Canvas 2D globe with pixel density capped at 2 and drawing limited to approximately 30fps. Its animation loop stops offscreen, in hidden tabs, when paused, or when reduced motion is requested.
+- Component-level CSS entrances with staggered cards and hover/focus feedback. Effects activate as elements enter the viewport, including newly mounted filter results. Content remains visible when observers are unavailable.
+- Canvas 2D mesh globe and particle network with pixel density capped at 2. A short automatic introduction settles after 4.2 seconds; subsequent movement responds to pointer/scroll input, then rendering stops when idle. Drawing also stops offscreen and in hidden tabs. There is no persistent globe pause control.
 - Reduced motion also disables scroll animations and CSS transitions.
 - Detail routes load on demand; project images load lazily with reserved aspect ratios.
 - Self-hosted DM Sans with system-font fallback. No homepage GitHub API, remote placeholder images or font-service requests.
 - Retired terminal, games, custom cursor, preloader, shaders, post-processing, GSAP, Lenis, Framer Motion and Three.js dependencies removed.
 
-Globe land outlines derive from [Natural Earth 1:110m land](https://www.naturalearthdata.com/downloads/110m-physical-vectors/110m-land/), public-domain data. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
+Employer and university logos are stored locally from the official AICA, EPFL, IBM, Vodacom and FAST-NUCES websites. Vodacom is explicitly labelled as a client collaboration. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
 
 ## Hosting
 

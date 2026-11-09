@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef } from 'react';
 import {
   BrowserRouter,
   Navigate,
@@ -10,7 +10,6 @@ import {
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import useScrollReveal from './hooks/useScrollReveal';
 
 const Projects = lazy(() => import('./pages/Projects'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
@@ -22,10 +21,13 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 function RouteEffects() {
   const { pathname, hash, key } = useLocation();
   const navigationType = useNavigationType();
-  useScrollReveal(pathname);
+  const previous = useRef({ pathname: '', hash: '', key: '' });
   useLayoutEffect(() => {
+    const last = previous.current;
+    previous.current = { pathname, hash, key };
+    if (last.pathname === pathname && last.hash === hash && !hash) return;
     if (hash) {
-      const target = document.getElementById(hash.slice(1));
+      const target = document.getElementById(hash === '#about' ? 'home' : hash.slice(1));
       target?.scrollIntoView({
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
           ? 'instant'
@@ -71,7 +73,7 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/about" element={<Navigate to="/#about" replace />} />
+            <Route path="/about" element={<Navigate to="/#home" replace />} />
             <Route path="/contact" element={<Navigate to="/#contact" replace />} />
             <Route path="/terminal" element={<Navigate to="/" replace />} />
             <Route path="/recommendations" element={<Recommendations />} />

@@ -4,8 +4,8 @@ import { IconMenu2, IconX, IconSun, IconMoon } from '@tabler/icons-react';
 
 const links = [
   ['home', 'Home'],
-  ['about', 'About'],
   ['experience', 'Experience'],
+  ['education', 'Education'],
   ['projects', 'Projects'],
   ['contact', 'Contact'],
 ];
@@ -26,7 +26,7 @@ export default function Navbar() {
     document.documentElement.dataset.theme = theme;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#0d0e12' : '#fafbfd');
+      ?.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#ffffff');
     try {
       localStorage.setItem('hxndev-theme', theme);
     } catch {

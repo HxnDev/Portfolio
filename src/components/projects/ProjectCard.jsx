@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconArrowUpRight, IconBrandGithub, IconPhoto } from '@tabler/icons-react';
+import Reveal from '../common/Reveal';
+import ProjectPreview from './ProjectPreview';
 
 export function ProjectImage({ project, eager = false }) {
   const [failed, setFailed] = useState(false);
@@ -52,32 +54,48 @@ export default function ProjectCard({ project, featured = false }) {
       : 'Your family recipes, beautifully together. A shared cookbook with photos, flexible ingredients and nutrition.'
     : project.description;
   return (
-    <article className={`card project-card ${featured ? 'project-card-featured' : ''}`} data-reveal>
-      <Link
-        className="project-image-link"
-        to={`/projects/${project.id}`}
-        aria-label={`Explore ${project.title}`}
-      >
-        <ProjectImage project={project} />
-      </Link>
-      <div className="project-copy">
-        <p className="eyebrow">
-          {project.category === 'web' ? 'Web application' : project.category} · {project.date}
-        </p>
-        <h3>
-          <Link to={`/projects/${project.id}`}>{project.title}</Link>
-        </h3>
-        <p className="muted">{description}</p>
-        <div className="tags">
-          {project.technologies.slice(0, featured ? 3 : 4).map(tech => (
-            <span key={tech}>{tech}</span>
-          ))}
+    <Reveal>
+      <article className={`card project-card ${featured ? 'project-card-featured' : ''}`}>
+        {featured ? (
+          <ProjectPreview id={project.id} />
+        ) : (
+          <Link
+            className="project-image-link"
+            to={`/projects/${project.id}`}
+            aria-label={`Explore ${project.title}`}
+          >
+            <ProjectImage project={project} />
+          </Link>
+        )}
+        <div className="project-copy">
+          <p className="eyebrow">
+            {project.category === 'web' ? 'Web application' : project.category} · {project.date}
+          </p>
+          <h3>
+            <Link to={`/projects/${project.id}`}>{project.title}</Link>
+          </h3>
+          <p className="muted">{description}</p>
+          {featured && (
+            <div className="project-ownership">
+              <h4>What I built</h4>
+              <p>
+                {project.id === 'jobtracker'
+                  ? 'A full application tracker with search, editing and analytics, while your Google Sheet stays the source of truth.'
+                  : 'A shared recipe book with flexible ingredients, photos, nutrition and an offline fallback.'}
+              </p>
+            </div>
+          )}
+          <div className="tags">
+            {project.technologies.slice(0, featured ? 3 : 4).map(tech => (
+              <span key={tech}>{tech}</span>
+            ))}
+          </div>
+          <ProjectActions project={project} />
+          <Link className="more-link" to={`/projects/${project.id}`}>
+            Read project details <IconArrowUpRight size={16} />
+          </Link>
         </div>
-        <ProjectActions project={project} />
-        <Link className="more-link" to={`/projects/${project.id}`}>
-          Explore project <IconArrowUpRight size={16} />
-        </Link>
-      </div>
-    </article>
+      </article>
+    </Reveal>
   );
 }

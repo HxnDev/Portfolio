@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 const organizations = [
   { name: 'AICA', file: 'aica-supplied.png', relation: 'Employer' },
   { name: 'EPFL', file: 'epfl.svg', relation: 'Employer' },
@@ -8,6 +10,48 @@ const organizations = [
   { name: 'Zixel', file: 'zixel.jpeg', relation: 'Employer' },
   { name: 'FAST–NUCES', file: 'fast-transparent.png', relation: 'Education' },
 ];
+
+// Inverted luminance removes baked white backgrounds while preserving logo shapes.
+function OrganizationLogo({ org }) {
+  const id = useId().replace(/:/g, '');
+  return (
+    <svg
+      className="organization-logo"
+      viewBox="0 0 140 64"
+      width="140"
+      height="64"
+      role="img"
+      aria-label={org.name}
+    >
+      <defs>
+        <filter id={id + '-ink'} colorInterpolationFilters="sRGB">
+          <feColorMatrix
+            type="matrix"
+            values="-0.2126 -0.7152 -0.0722 0 1 -0.2126 -0.7152 -0.0722 0 1 -0.2126 -0.7152 -0.0722 0 1 0 0 0 1 0"
+          />
+        </filter>
+        <mask
+          id={id + '-mask'}
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="140"
+          height="64"
+          style={{ maskType: 'luminance' }}
+        >
+          <image
+            href={'/logos/' + org.file}
+            width="140"
+            height="64"
+            preserveAspectRatio="xMidYMid meet"
+            filter={'url(#' + id + '-ink)'}
+          />
+        </mask>
+      </defs>
+      <rect width="140" height="64" fill="currentColor" mask={'url(#' + id + '-mask)'} />
+    </svg>
+  );
+}
 
 export default function Organizations() {
   return (
@@ -31,13 +75,7 @@ export default function Organizations() {
                       'organization-panel mark-' + org.name.toLowerCase().replace(/[^a-z]/g, '')
                     }
                   >
-                    <img
-                      src={'/logos/' + org.file}
-                      alt={org.name}
-                      width="140"
-                      height="64"
-                      loading="lazy"
-                    />
+                    <OrganizationLogo org={org} />
                   </div>
                   <strong>{org.name}</strong>
                   <span>{org.relation}</span>

@@ -481,6 +481,7 @@ section[id] {
   border: 1px solid #e6e6e6;
 }
 .company-logo img {
+  filter: none;
   object-fit: contain;
   width: 76px;
   height: 30px;
@@ -859,21 +860,13 @@ section[id] {
   width: 100%;
   margin-bottom: 14px;
 }
-.organization-panel img {
-  filter: grayscale(1) invert(1);
-  mix-blend-mode: screen;
+.organization-logo {
   width: 135px;
   height: 64px;
-  object-fit: contain;
+  color: var(--ink);
 }
-.organization-panel.mark-vodacom img {
+.organization-panel.mark-vodacom .organization-logo {
   width: 48px;
-  filter: grayscale(1);
-  mix-blend-mode: normal;
-}
-:root[data-theme='light'] .organization-panel img {
-  filter: grayscale(1);
-  mix-blend-mode: multiply;
 }
 .organization-slide strong {
   font-size: 0.9rem;

@@ -5,7 +5,7 @@ export function ExperienceCard({ experience, index = 0 }) {
   const logos = {
     AICA: 'aica-supplied.png',
     EPFL: 'epfl.svg',
-    IBM: 'ibm.svg',
+    IBM: 'ibm-blue.svg',
     'Shanghai Zixel': 'zixel.jpeg',
     'Think Vision': 'think-vision.png',
   };

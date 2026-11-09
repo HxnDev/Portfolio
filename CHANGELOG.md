@@ -4,6 +4,8 @@
 
 ### Improved
 
+- See clean, background-free monochrome logos throughout the organization strip, and the supplied blue IBM mark in work experience.
+
 - Compare both education entries side by side on wider screens, with compact logos and clear dates.
 - Browse in neutral charcoal and warm-white themes, with slowly drifting background nodes.
 - See blue IBM and transparent FAST logos in experience and education, while the organization strip returns to monochrome marks without panels.

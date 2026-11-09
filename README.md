@@ -53,10 +53,10 @@ The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Z
 
 ## Deployment policy
 
-This repository is development-only for now. Use `npm run dev`; no deployment is needed for local work.
+Use `npm run dev` for local development. Pushing changes to `main` should automatically update the production website through Vercel.
 
 - The push-triggered GitHub Pages deployment workflow has been removed.
-- `vercel.json` sets `git.deploymentEnabled` to `false`, disabling automatic Git-triggered production and preview deployments on every branch. The client-side route rewrite is retained for a future authorized deployment.
+- `vercel.json` enables Git-triggered deployments for `main` and disables every other branch, including branches containing slashes. In the connected Vercel project, the Production Branch must be `main`; other branches must not be assigned to custom deployment environments. The client-side route rewrite remains enabled.
 - `npm run preview` only serves an existing local production build; it does not create a hosted Preview deployment and is not needed for normal development.
 - These changes take effect remotely after they are pushed. They do not remove existing deployment history, unpublish existing sites, cancel already queued deployments, or change remote dashboard settings.
 - If GitHub Pages is still configured to publish the old `gh-pages` branch, disable it under repository **Settings → Pages → Build and deployment → Source / Branch** (choose **None** for the publishing branch). This is separate from removing the workflow that updates that branch.

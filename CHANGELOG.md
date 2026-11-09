@@ -4,7 +4,7 @@
 
 ### Development
 
-- Remove automatic GitHub Pages publishing and disable Git-triggered Vercel production and preview deployments while the redesign remains in local development.
+- Remove automatic GitHub Pages publishing; automatically deploy `main` to Vercel production while disabling deployments from other branches.
 - Refresh the README with current features, unreleased version status and deployment controls.
 
 ### Improved

@@ -1,9 +1,9 @@
 import { CERTIFICATIONS } from './certifications';
 
 export const SKILL_GROUPS = [
-  { name: 'Frontend', skills: ['React', 'TypeScript', 'JavaScript'] },
-  { name: 'Backend', skills: ['Java', 'Go', 'Node.js', 'Python'] },
-  { name: 'Cloud', skills: ['AWS', 'Docker', 'Kubernetes'] },
+  { name: 'Frontend', skills: ['React', 'Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS'] },
+  { name: 'Backend', skills: ['Java', 'Go', 'Node.js', 'Python', 'Rust', 'Spring Boot'] },
+  { name: 'Cloud', skills: ['AWS', 'Docker', 'Kubernetes', 'Git'] },
   { name: 'Engineering', skills: ['Testing', 'CI/CD', 'System design'] },
 ];
 

@@ -2,13 +2,19 @@ import { IconArrowUpRight, IconCertificate, IconQuote } from '@tabler/icons-reac
 import Reveal from './Reveal';
 
 export function ExperienceCard({ experience, index = 0 }) {
-  const logos = { AICA: 'aica.webp', EPFL: 'epfl.svg', IBM: 'ibm.svg' };
+  const logos = {
+    AICA: 'aica-supplied.png',
+    EPFL: 'epfl.svg',
+    IBM: 'ibm.svg',
+    'Shanghai Zixel': 'zixel.jpeg',
+    'Think Vision': 'think-vision.png',
+  };
   return (
     <Reveal>
       <article className="card experience-card">
         <div className="experience-top">
           {logos[experience.company] ? (
-            <span className={'company-logo logo-' + experience.company.toLowerCase()}>
+            <span className="company-logo">
               <img
                 src={'/logos/' + logos[experience.company]}
                 alt={experience.company}
@@ -88,6 +94,7 @@ export function CertificationCard({ certification }) {
           <p className="meta">
             {certification.issuer} · {certification.date}
           </p>
+          <p className="credential-description">{certification.description}</p>
         </div>
         {certification.url && (
           <IconArrowUpRight size={18} className="credential-arrow" aria-hidden="true" />

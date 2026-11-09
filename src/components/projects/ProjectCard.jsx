@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconArrowUpRight, IconBrandGithub, IconPhoto } from '@tabler/icons-react';
 import Reveal from '../common/Reveal';
-import ProjectPreview from './ProjectPreview';
+import ProjectMedia from './ProjectMedia';
 
 export function ProjectImage({ project, eager = false }) {
   const [failed, setFailed] = useState(false);
+  if (!project.image || project.media?.src) return <ProjectMedia project={project} />;
   return (
     <div className="project-image">
       {failed ? (
@@ -48,16 +49,12 @@ export function ProjectActions({ project }) {
 }
 
 export default function ProjectCard({ project, featured = false }) {
-  const description = featured
-    ? project.id === 'jobtracker'
-      ? 'A clearer view of your job search. Applications, progress and insights, connected to your own spreadsheet.'
-      : 'Your family recipes, beautifully together. A shared cookbook with photos, flexible ingredients and nutrition.'
-    : project.description;
+  const description = project.description;
   return (
     <Reveal>
       <article className={`card project-card ${featured ? 'project-card-featured' : ''}`}>
         {featured ? (
-          <ProjectPreview id={project.id} />
+          <ProjectMedia project={project} />
         ) : (
           <Link
             className="project-image-link"
@@ -78,11 +75,7 @@ export default function ProjectCard({ project, featured = false }) {
           {featured && (
             <div className="project-ownership">
               <h4>What I built</h4>
-              <p>
-                {project.id === 'jobtracker'
-                  ? 'A full application tracker with search, editing and analytics, while your Google Sheet stays the source of truth.'
-                  : 'A shared recipe book with flexible ingredients, photos, nutrition and an offline fallback.'}
-              </p>
+              <p>{project.overview || project.longDescription}</p>
             </div>
           )}
           <div className="tags">

@@ -5,11 +5,11 @@ export const EXPERIENCE = [
     role: 'Frontend Engineer',
     company: 'AICA',
     location: 'Geneva, Switzerland',
-    date: 'Mar 2025 — Present',
+    date: 'Mar 2025 — Jul 2026',
     points: [
-      "Building AICA Studio's frontend architecture and UI in ReactJS, TypeScript & Flowbite — new interfaces, animations, and reusable component libraries.",
-      'Contributing to backend APIs and Go middleware to support frontend integration and robotics-related workflows.',
-      'Reviewing pull requests and writing test suites to raise code quality and reliability.',
+      "Built AICA Studio's frontend architecture and UI in ReactJS, TypeScript & Flowbite — new interfaces, animations, and reusable component libraries.",
+      'Contributed to backend APIs and Go middleware to support frontend integration and robotics-related workflows.',
+      'Reviewed pull requests and wrote test suites to raise code quality and reliability.',
     ],
   },
   {

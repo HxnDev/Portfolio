@@ -1,12 +1,13 @@
 // Licenses & certifications (LinkedIn-derived).
 // Each entry: { title, issuer, date, url? }. IBM badges have no public credential URL.
+import { CERTIFICATION_DESCRIPTIONS } from './certification-descriptions';
 
 const udemy = id => `https://ude.my/${id}`;
 const coursera = id => `https://coursera.org/account/accomplishments/certificate/${id}`;
 const courseraSpec = id =>
   `https://coursera.org/account/accomplishments/specialization/certificate/${id}`;
 
-export const CERTIFICATIONS = [
+const COURSES = [
   {
     title: 'Learn Vert.x - Reactive microservices with Java',
     issuer: 'Udemy',
@@ -491,3 +492,8 @@ export const CERTIFICATIONS = [
     url: coursera('S7FJMZYN3BQ7'),
   },
 ];
+
+export const CERTIFICATIONS = COURSES.map(course => ({
+  ...course,
+  description: CERTIFICATION_DESCRIPTIONS[course.title],
+}));

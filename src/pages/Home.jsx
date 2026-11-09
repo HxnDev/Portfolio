@@ -10,6 +10,7 @@ import {
   IconSettings,
 } from '@tabler/icons-react';
 import Globe from '../components/home/Globe';
+import Organizations from '../components/home/Organizations';
 import ContactSection from '../components/home/ContactSection';
 import Section from '../components/common/Section';
 import Reveal from '../components/common/Reveal';
@@ -84,31 +85,7 @@ export default function Home() {
         eyebrow="Across teams, industries and borders"
         className="organizations-band"
       >
-        <Reveal>
-          <div className="organization-logos">
-            {[
-              ['aica', 'AICA', 'Engineering'],
-              ['epfl', 'EPFL', 'Research'],
-              ['ibm', 'IBM', 'Enterprise'],
-              ['vodacom', 'Vodacom', 'Client collaboration'],
-            ].map(([id, name, label]) => (
-              <div className="organization" key={id}>
-                <div className="organization-mark">
-                  <img
-                    className={'organization-logo logo-' + id}
-                    src={'/logos/' + id + (id === 'aica' ? '.webp' : '.svg')}
-                    alt={name}
-                    width="150"
-                    height="48"
-                    loading="lazy"
-                  />
-                  {(id === 'vodacom' || id === 'aica') && <strong>{name}</strong>}
-                </div>
-                <span>{label}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        <Organizations />
       </Section>
       <Section
         id="experience"
@@ -118,7 +95,7 @@ export default function Home() {
         linkLabel="Explore my full experience"
       >
         <div className="grid two home-experience">
-          {EXPERIENCE.slice(0, 3).map((experience, index) => (
+          {EXPERIENCE.slice(0, 4).map((experience, index) => (
             <ExperienceCard key={experience.company} experience={experience} index={index} />
           ))}
         </div>
@@ -182,7 +159,7 @@ export default function Home() {
         linkLabel="Explore all projects"
       >
         <div className="featured-projects">
-          {['jobtracker', 'bitebook'].map(id => (
+          {['viora', 'nexus', 'odyssey', 'jobfit', 'mancave', 'afterlight'].map(id => (
             <ProjectCard key={id} project={projects.find(project => project.id === id)} featured />
           ))}
         </div>
@@ -194,14 +171,12 @@ export default function Home() {
         to="/recommendations"
         linkLabel="Read all recommendations"
       >
-        <div className="grid two">
+        <div className="grid two featured-recommendations">
           <RecommendationCard
             recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Enrico Eberhard')}
-            excerpt="He worked very effectively with our UX/UI designer to give early feedback on both technical feasibility and usability, and then always perfectly matched the agreed Figma design with his implementations (tailwind, flowbite, CSS)."
           />
           <RecommendationCard
             recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Kajhal Ramsunder')}
-            excerpt="You are always giving us problems with solutions; that is a very rare quality in an individual. You display very good leadership skills, be it on a call with the team or individually."
           />
         </div>
       </Section>

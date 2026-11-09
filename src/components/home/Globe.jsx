@@ -160,17 +160,6 @@ export default function Globe() {
         ctx.fill();
         ctx.restore();
       }
-      for (let i = 0; i < 16; i++) {
-        const a = i * 2.4 + rotation * 0.8;
-        const r = radius * (1.07 + (i % 3) * 0.055);
-        ctx.fillStyle = color(0.28);
-        ctx.font = '9px monospace';
-        ctx.fillText(
-          i % 2 ? '1' : '0',
-          centerX + Math.cos(a) * r,
-          centerY + Math.sin(a) * r * 0.94
-        );
-      }
       if (
         !reduced &&
         visible &&

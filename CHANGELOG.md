@@ -4,6 +4,12 @@
 
 ### Improved
 
+- Discover Viora, Nexus, Odyssey, JobFit, ManCave and Afterlight in the featured project lineup, with consistent recording frames for mobile and desktop footage.
+- Browse all eight organizations in a moving logo strip, with affiliation labels and pause controls.
+- See Shanghai Zixel as the fourth featured role and the corrected July 2026 end date for AICA.
+- Read complete featured recommendations and short summaries for every course. Recommendations and courses are accessible from the main navigation.
+- Enjoy the network globe without binary digits.
+
 - Meet Hassan through a direct personal introduction and a monochrome design with distinct alternating sections.
 - See organizations, full professional experience with company logos, and education directly on the homepage.
 - Try interactive project examples, including application stages and recipe search, before opening the actual products.

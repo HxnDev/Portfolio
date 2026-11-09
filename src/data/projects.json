@@ -19,7 +19,7 @@
       ],
       "githubUrl": "https://github.com/HxnDev/BiteBook",
       "liveUrl": "https://bitebook.hxndev.com",
-      "featured": true,
+      "featured": false,
       "category": "web",
       "date": "2026",
       "features": [
@@ -51,7 +51,7 @@
       ],
       "githubUrl": "https://github.com/HxnDev/JobTracker",
       "liveUrl": "https://jobs.hxndev.com",
-      "featured": true,
+      "featured": false,
       "category": "web",
       "date": "2026",
       "features": [
@@ -85,7 +85,12 @@
         "ATS compatibility checking",
         "Cover letter generation",
         "Interview preparation tools"
-      ]
+      ],
+      "media": {
+        "orientation": "landscape",
+        "src": null
+      },
+      "overview": "A job matching platform with résumé analysis, skill assessment and personalized recommendations."
     },
     {
       "id": "portfolio-website",
@@ -97,7 +102,7 @@
       "technologies": ["React", "GSAP", "Mantine UI", "JavaScript"],
       "githubUrl": "https://github.com/HxnDev/hxndev.github.io",
       "liveUrl": "https://hxndev.github.io",
-      "featured": true,
+      "featured": false,
       "category": "web",
       "date": "2023",
       "features": [
@@ -118,7 +123,7 @@
       "technologies": ["Python", "OpenCV", "Computer Vision", "MediaPipe"],
       "githubUrl": "https://github.com/HxnDev/Virtual-Mouse-using-OpenCV",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "ai",
       "date": "2022",
       "features": [
@@ -138,7 +143,7 @@
       "technologies": ["Python", "OpenCV", "TensorFlow", "Computer Vision", "Machine Learning"],
       "githubUrl": "https://github.com/HxnDev/HawksEye",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "ai",
       "date": "2022",
       "features": [
@@ -201,7 +206,7 @@
       "technologies": ["Java", "Spring Boot", "MySQL", "Thymeleaf", "Bootstrap"],
       "githubUrl": "https://github.com/HxnDev/Event-Management-System",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "web",
       "date": "2022",
       "features": [
@@ -306,7 +311,7 @@
       "technologies": ["Python", "TensorFlow", "MediaPipe", "OpenCV", "Computer Vision"],
       "githubUrl": "https://github.com/HxnDev/Pose-Detection",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "ai",
       "date": "2021",
       "features": [
@@ -327,7 +332,7 @@
       "technologies": ["Java", "JavaFX", "Cryptography", "Security", "UI Design"],
       "githubUrl": "https://github.com/HxnDev/Graphical-Password-Authentication-System",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "security",
       "date": "2021",
       "features": [
@@ -369,7 +374,7 @@
       "technologies": ["Ethereum", "Solidity", "React", "Web3.js", "Smart Contracts"],
       "githubUrl": "https://github.com/HxnDev/The-Ripple-Effect---An-Ethereum-Based-Fundraiser-App",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "blockchain",
       "date": "2022",
       "features": [
@@ -432,7 +437,7 @@
       "technologies": ["Python", "OpenCV", "Computer Vision", "MediaPipe", "Gesture Recognition"],
       "githubUrl": "https://github.com/HxnDev/Virtual-Drag-And-Drop-Using-OpenCV",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "ai",
       "date": "2021",
       "features": [
@@ -453,7 +458,7 @@
       "technologies": ["Python", "MediaPipe", "OpenCV", "TensorFlow", "Computer Vision"],
       "githubUrl": "https://github.com/HxnDev/Face-Mesh-using-Python",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "ai",
       "date": "2021",
       "features": [
@@ -522,7 +527,7 @@
       ],
       "githubUrl": "https://github.com/HxnDev/AI-Based-Chess-Game-Using-Minimax-and-Alpha-Beta-Prunning",
       "liveUrl": null,
-      "featured": true,
+      "featured": false,
       "category": "ai",
       "date": "2022",
       "features": [
@@ -553,6 +558,103 @@
         "Educational resources on password security",
         "Visualization of cracking process"
       ]
+    },
+    {
+      "id": "viora",
+      "title": "Viora",
+      "description": "Fitness, nutrition and progress in one personal daily companion.",
+      "longDescription": "Viora is a local-first Android fitness and nutrition tracker. It brings together a food diary, activity, hydration, fasting, body measurements and progress photos, with encrypted Google Drive backups and read-only Health Connect integration.",
+      "technologies": ["React Native", "TypeScript", "Expo", "SQLite"],
+      "category": "mobile",
+      "date": "2026",
+      "features": [
+        "Food diary and nutrition tracking",
+        "Activity, hydration and progress tracking",
+        "Encrypted backups and offline diary access"
+      ],
+      "media": {
+        "orientation": "portrait",
+        "src": null
+      },
+      "featured": true,
+      "overview": "Food diaries, workouts, health data and progress tracking, with local storage and encrypted backups."
+    },
+    {
+      "id": "nexus",
+      "title": "Nexus",
+      "description": "A calmer home for your notes, tasks, plans and everyday life.",
+      "longDescription": "Nexus is a local-first personal organization app that brings notes, tasks, checklists, events and reminders into a connected workspace. Home, Library and Planner offer different views of the same information, with device-calendar integration and account-scoped local storage.",
+      "technologies": ["React Native", "TypeScript", "Expo", "SQLite"],
+      "category": "mobile",
+      "date": "2026",
+      "features": [
+        "Notes, tasks, checklists and reminders",
+        "Home, Library and Planner views",
+        "Device-calendar integration and local-first storage"
+      ],
+      "media": {
+        "orientation": "portrait",
+        "src": null
+      },
+      "featured": true,
+      "overview": "A connected workspace for notes, tasks, events and reminders, with device-calendar integration and offline storage."
+    },
+    {
+      "id": "odyssey",
+      "title": "Odyssey",
+      "description": "Every journey, beautifully remembered. A personal archive of the places you’ve been.",
+      "longDescription": "Odyssey is a personal travel companion with an offline world map, a searchable trip archive, multi-leg flight tracking and travel statistics. Country statuses, visited cities, trip highlights and passport-style stamps turn scattered travel memories into a lasting record.",
+      "technologies": ["React Native", "TypeScript", "MapLibre", "Supabase"],
+      "category": "mobile",
+      "date": "2026",
+      "features": [
+        "Offline world map and visited places",
+        "Trips and multi-leg flight tracking",
+        "Travel statistics and country stamps"
+      ],
+      "media": {
+        "orientation": "portrait",
+        "src": null
+      },
+      "featured": true,
+      "overview": "An offline world map, trip archive, flight tracking and travel statistics in one mobile companion."
+    },
+    {
+      "id": "mancave",
+      "title": "ManCave",
+      "description": "Everything you collect, finally in one place. Your personal collection vault.",
+      "longDescription": "ManCave brings books, LEGO sets, games, perfumes and other collections into one personal vault. Its web and Android apps share a Supabase backend, with customizable categories, photo uploads, collection shelves, search and dashboards.",
+      "technologies": ["React", "React Native", "TypeScript", "Supabase"],
+      "category": "web",
+      "date": "2026",
+      "liveUrl": "https://vault.hxndev.com",
+      "features": [
+        "Web and mobile collection management",
+        "Custom categories, fields and photo uploads",
+        "Collection shelves, search and dashboards"
+      ],
+      "media": {
+        "orientation": "landscape",
+        "src": null
+      },
+      "featured": true,
+      "overview": "A collection vault across web and mobile, with customizable categories, photos, search and dashboards."
+    },
+    {
+      "id": "afterlight",
+      "title": "Afterlight",
+      "description": "Your films, series and next great watch, in one beautifully organized collection.",
+      "longDescription": "Afterlight brings movie and series collections into a dedicated app: title and poster lookup, personal notes, saved links and watch-status tracking. The collection currently lives in Nexus and is planned as a standalone product.",
+      "technologies": ["React Native", "TypeScript"],
+      "category": "mobile",
+      "date": "In development",
+      "features": [],
+      "media": {
+        "orientation": "portrait",
+        "src": null
+      },
+      "featured": true,
+      "overview": "A focused film and series directory with poster search, personal notes and watch-status tracking. The standalone app is in development."
     }
   ]
 }

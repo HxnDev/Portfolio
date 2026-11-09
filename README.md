@@ -31,7 +31,7 @@ JavaScript source is checked with TypeScript (checkJs), ESLint and Prettier. The
 - /certifications: full credentials, searchable and filterable by issuer. Credentials without public URLs remain non-clickable.
 - Legacy /about links return to the introduction; /contact returns to the contact section. /terminal returns home. /projects?project=id opens the matching detail page. /JobFit and its child paths still redirect to the standalone app.
 
-Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Featured projects have interactive, clearly labelled examples with sample content. They do not connect to live applications or personal data. Archive/detail images remain existing local assets. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
+Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Featured projects are Viora, Nexus, Odyssey, JobFit, ManCave and Afterlight (the planned standalone movie directory). Their recording frames share a 16:10 stage and preserve the source aspect ratio. Recordings are pending; see docs/project-recordings.md to add them. Older archive/detail images remain existing local assets. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
 
 ## Performance and motion
 
@@ -43,7 +43,7 @@ Edit src/data/ to maintain experience, education, projects, credentials, recomme
 - Self-hosted DM Sans with system-font fallback. No homepage GitHub API, remote placeholder images or font-service requests.
 - Retired terminal, games, custom cursor, preloader, shaders, post-processing, GSAP, Lenis, Framer Motion and Three.js dependencies removed.
 
-Employer and university logos are stored locally from the official AICA, EPFL, IBM, Vodacom and FAST-NUCES websites. Vodacom is explicitly labelled as a client collaboration. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
+The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Zixel and FAST-NUCES, with relationship labels and hover/focus/explicit pause controls. User-supplied AICA, GBDI, Think Vision and Zixel marks are stored locally; clean official EPFL/FAST assets are retained because the replacement attachments have baked checkerboard backgrounds. Courses have topic summaries; homepage recommendations show their complete original text. Pinning is intentionally not implemented. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
 
 ## Hosting
 

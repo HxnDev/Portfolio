@@ -158,7 +158,7 @@ export default function Home() {
       <Section id="skills" title="Skills & tools" eyebrow="From interface to infrastructure">
         <div className="grid four">
           {SKILL_GROUPS.map((group, index) => {
-            const Icon = skillIcons[index];
+            const Icon = skillIcons[index % skillIcons.length];
             return (
               <Reveal key={group.name}>
                 <article className="card skill-card">

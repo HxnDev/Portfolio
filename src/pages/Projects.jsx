@@ -33,7 +33,7 @@ export default function Projects() {
   const filtered = projects.filter(
     project =>
       (controls.filter === 'all' || project.category === controls.filter) &&
-      [project.title, project.description, ...project.technologies]
+      [project.title, project.description, ...project.technologies, ...(project.libraries || [])]
         .join(' ')
         .toLowerCase()
         .includes(query)

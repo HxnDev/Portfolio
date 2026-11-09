@@ -27,6 +27,16 @@ export default function ProjectDetail() {
             <span key={tech}>{tech}</span>
           ))}
         </div>
+        {project.libraries?.length > 0 && (
+          <details className="stack-details">
+            <summary>Libraries & development tools</summary>
+            <div className="tags">
+              {project.libraries.map(library => (
+                <span key={library}>{library}</span>
+              ))}
+            </div>
+          </details>
+        )}
         {project.features?.length > 0 && (
           <>
             <h2>Highlights.</h2>

@@ -9,6 +9,12 @@
 
 ### Improved
 
+- See every skill directly in its category without expanding a list.
+
+- Watch seven more project recordings in laptop frames, with still illustrated covers for the remaining archive projects.
+- Read clearer project descriptions and corrected technology lists, including Flutter physics learning, Java event management and C++ distributed computing.
+- Explore an expanded skills section and detailed project library lists drawn from source reviews.
+
 - See clean, background-free monochrome logos throughout the organization strip, and the supplied blue IBM mark in work experience.
 
 - Compare both education entries side by side on wider screens, with compact logos and clear dates.

@@ -268,6 +268,8 @@ section[id] {
   gap: 8px;
 }
 .tags span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   padding: 4px 10px;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -1744,6 +1746,8 @@ textarea:hover {
     gap: 6px;
   }
   .tags span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
     font-size: 0.7rem;
     padding: 4px 8px;
   }
@@ -1975,4 +1979,18 @@ textarea:hover {
     opacity: 1;
     transform: none;
   }
+}
+
+.stack-details {
+  margin-block: 18px;
+  width: 100%;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.stack-details summary {
+  cursor: pointer;
+  padding-block: 8px;
+}
+.stack-details .tags {
+  margin-top: 12px;
 }

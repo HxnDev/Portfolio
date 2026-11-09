@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-/** @param {{project: {title: string, media?: {src?: string, kind?: string, orientation?: string, poster?: string, bezel?: string}}}} props */
+/** @param {{project: {title: string, media?: {src?: string, kind?: string, orientation?: string, poster?: string, bezel?: string, illustrative?: boolean}}}} props */
 export default function ProjectMedia({ project }) {
   const media = project.media || {};
   const portrait = media.orientation === 'portrait';
@@ -53,8 +53,9 @@ export default function ProjectMedia({ project }) {
           {media.src && !failed ? (
             <img
               className="recording-content"
-              src={active ? media.src : media.poster}
-              alt={`${project.title} interface preview`}
+              src={media.kind === 'image' ? media.src : active ? media.src : media.poster}
+              loading="lazy"
+              alt={`${project.title} ${media.illustrative ? 'concept cover' : 'interface preview'}`}
               decoding="async"
               onError={() => setFailed(true)}
             />
@@ -66,7 +67,9 @@ export default function ProjectMedia({ project }) {
           )}
         </div>
       </div>
-      <span className="recording-format">{portrait ? 'Mobile app' : 'Desktop app'}</span>
+      <span className="recording-format">
+        {media.illustrative ? 'Illustrative cover' : portrait ? 'Mobile app' : 'Desktop app'}
+      </span>
     </div>
   );
 }

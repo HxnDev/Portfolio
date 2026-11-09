@@ -1,232 +1,199 @@
-import { useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { IconArrowUpRight, IconQuote, IconTerminal2 } from '@tabler/icons-react';
-import CinematicStage from '@/components/home/CinematicStage';
-import RecruiterHero from '@/components/home/RecruiterHero';
-import GitHubActivity from '@/components/home/GitHubActivity';
-import ProjectCard from '@/components/projects/ProjectCard';
-import Marquee from '@/components/common/Marquee';
-import { useGetProjects } from '@/hooks/useGetProjects';
-import { useUIMode } from '@/components/core/uiModeContext';
-import { MARQUEE_TECH } from '@/data/skills';
-import { RECOMMENDATIONS } from '@/data/recommendations';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  IconArrowUpRight,
+  IconCode,
+  IconStack2,
+  IconCloud,
+  IconDeviceDesktop,
+  IconServer,
+  IconSettings,
+} from '@tabler/icons-react';
+import Globe from '../components/home/Globe';
+import ContactSection from '../components/home/ContactSection';
+import Section from '../components/common/Section';
+import { ExperienceCard, RecommendationCard, CertificationCard } from '../components/common/Cards';
+import ProjectCard from '../components/projects/ProjectCard';
+import { EXPERIENCE } from '../data/experience';
+import { RECOMMENDATIONS } from '../data/recommendations';
+import { FEATURED_CERTIFICATIONS, SKILL_GROUPS } from '../data/overview';
+import { projects } from '../data/projects.json';
 
-const Home = () => {
-  const navigate = useNavigate();
-  const { projects } = useGetProjects();
-  const { recruiter } = useUIMode();
-
-  const featured = useMemo(() => projects.filter(p => p.featured).slice(0, 6), [projects]);
-  const voices = useMemo(() => RECOMMENDATIONS.slice(0, 3), []);
-
-  const openProject = project => {
-    navigate(`/projects?project=${project.id}`);
-  };
-
+const skillIcons = [IconDeviceDesktop, IconServer, IconCloud, IconSettings];
+export default function Home() {
+  useEffect(() => {
+    document.title = 'Hassan Shahzad | Full-stack engineer';
+  }, []);
   return (
     <>
-      {recruiter ? (
-        <RecruiterHero />
-      ) : (
-        <>
-          <CinematicStage />
-          <Marquee items={MARQUEE_TECH} />
-        </>
-      )}
-
-      {/* Featured work */}
-      <section className="section container">
-        <div className="section-head">
-          <div>
-            <span className="section-index" data-reveal>
-              Selected work
-            </span>
-            <h2 className="section-title" data-reveal data-reveal-delay={80}>
-              Featured projects
-            </h2>
-          </div>
-          <Link to="/projects" className="btn btn--ghost" data-reveal data-reveal-delay={120}>
-            <span>All projects</span>
-            <IconArrowUpRight size={17} />
-          </Link>
-        </div>
-
-        <div className="grid-3">
-          {featured.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} onOpen={openProject} />
-          ))}
-        </div>
-      </section>
-
-      {/* Terminal teaser — a playful extra, hidden in recruiter mode */}
-      {!recruiter && (
-      <section className="section container">
-        <Link to="/terminal" className="term-cta" data-reveal aria-label="Open the interactive terminal">
-          <div className="term-cta__demo" aria-hidden="true">
-            <div className="term-cta__bar">
-              <span className="term-cta__dot term-cta__dot--r" />
-              <span className="term-cta__dot term-cta__dot--y" />
-              <span className="term-cta__dot term-cta__dot--g" />
-              <span className="term-cta__file">guest@hxndev — zsh</span>
-            </div>
-            <div className="term-cta__lines">
-              <p><span className="term-cta__prompt">$</span> sudo hire-me</p>
-              <p className="term-cta__ok">[sudo] permission granted — excellent decision.</p>
-              <p><span className="term-cta__prompt">$</span> <span className="term-cta__caret" /></p>
-            </div>
-          </div>
-          <div className="term-cta__copy">
-            <span className="section-index">Prefer the keyboard?</span>
-            <h2 className="term-cta__title display">
-              This site has a real, <span className="gradient-text">working shell.</span>
-            </h2>
-            <p className="term-cta__sub">
-              Browse projects, check skills, download the résumé — all from a terminal. Tab
-              completion and command history included.
+      <div className="intro-world">
+        <svg
+          className="network"
+          viewBox="0 0 1200 900"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <g fill="none" stroke="currentColor" strokeWidth="0.6">
+            <path d="M0 180 230 60 420 210 660 30 950 120 1200 0M0 180 150 430 420 210 550 460 950 120 1140 400 1200 0M0 650 150 430 330 650 550 460 800 600 1140 400 1200 730M230 60 150 430M420 210 800 600 950 120M330 650 660 810 800 600 1050 850 1200 730M0 650 330 650 660 810" />
+          </g>
+          <g fill="currentColor">
+            {[
+              [230, 60],
+              [420, 210],
+              [660, 30],
+              [950, 120],
+              [150, 430],
+              [550, 460],
+              [1140, 400],
+              [330, 650],
+              [800, 600],
+            ].map(([cx, cy]) => (
+              <circle key={cx} cx={cx} cy={cy} r="2.3" />
+            ))}
+          </g>
+        </svg>
+        <section className="container hero" id="home" tabIndex={-1} aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              Hassan Shahzad <span> / </span> Geneva, CH
             </p>
-            <span className="btn btn--primary term-cta__btn">
-              <IconTerminal2 size={18} />
-              <span>Launch terminal</span>
-            </span>
+            <h1 id="hero-title">
+              Engineering ideas.
+              <br />
+              Building experiences.
+            </h1>
+            <p className="hero-lead">
+              Senior full-stack engineer creating intuitive interfaces and reliable systems.
+            </p>
+            <div className="actions">
+              <Link to="/#projects" className="button primary">
+                View my work <IconArrowUpRight size={18} />
+              </Link>
+              <Link to="/#contact" className="button secondary">
+                Get in touch
+              </Link>
+            </div>
+            <dl className="stats">
+              <div>
+                <IconStack2 size={25} stroke={1.5} />
+                <dt>6+ years</dt>
+                <dd>experience</dd>
+              </div>
+              <div>
+                <IconCode size={25} stroke={1.5} />
+                <dt>40+</dt>
+                <dd>projects</dd>
+              </div>
+            </dl>
           </div>
-        </Link>
-      </section>
-      )}
-
-      {!recruiter && <GitHubActivity />}
-
-      {/* Voices */}
-      <section className="section container">
-        <div className="section-head">
+          <Globe />
+        </section>
+        <section
+          className="container about-section"
+          id="about"
+          tabIndex={-1}
+          aria-labelledby="about-title"
+          data-reveal
+        >
+          <div className="about-monogram">HS</div>
           <div>
-            <span className="section-index" data-reveal>
-              Voices
-            </span>
-            <h2 className="section-title" data-reveal data-reveal-delay={80}>
-              What colleagues say
-            </h2>
+            <h2 id="about-title">A little about me.</h2>
+            <p>
+              From robotics interfaces to research platforms, I turn complex problems into intuitive
+              software. Based in Geneva, I bring 6+ years of experience building applications and
+              leading teams.
+            </p>
+            <p className="meta">BSc Computer Science · FAST–NUCES</p>
+            <a
+              className="more-link"
+              href="/assets/resume/hassan_resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download résumé <IconArrowUpRight size={17} />
+            </a>
           </div>
-          <Link to="/recommendations" className="btn btn--ghost" data-reveal data-reveal-delay={120}>
-            <span>All {RECOMMENDATIONS.length} recommendations</span>
-            <IconArrowUpRight size={17} />
-          </Link>
+        </section>
+      </div>
+      <Section
+        id="experience"
+        title="Experience that spans industries."
+        to="/experience"
+        linkLabel="View full experience"
+      >
+        <div className="employers" aria-label="Experience at AICA, EPFL and IBM">
+          <span>AICA</span>
+          <span>EPFL</span>
+          <span>IBM</span>
         </div>
-
-        <div className="grid-3">
-          {voices.map((rec, i) => (
-            <figure className="voice" key={rec.name} data-reveal data-reveal-delay={i * 80}>
-              <IconQuote size={26} className="voice__mark" />
-              <blockquote className="voice__quote">{rec.quote}</blockquote>
-              <figcaption className="voice__who">
-                <span className="voice__name">{rec.name}</span>
-                <span className="voice__title">{rec.title}</span>
-              </figcaption>
-            </figure>
+        <div className="grid three">
+          {EXPERIENCE.slice(0, 3).map((experience, index) => (
+            <ExperienceCard key={experience.company} experience={experience} index={index} />
           ))}
         </div>
-      </section>
-
-      <style>{`
-        .voice {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          padding: clamp(1.4rem, 3vw, 2rem);
-          background: var(--bg-elev);
-          border: 1px solid var(--line);
-          border-radius: var(--radius);
-          margin: 0;
-          transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
-        }
-        .voice:hover { border-color: var(--line-strong); transform: translateY(-4px); }
-        .voice__mark { color: var(--amber); opacity: 0.8; flex-shrink: 0; }
-        .voice__quote {
-          margin: 0;
-          color: var(--ink-dim);
-          font-size: 0.96rem;
-          line-height: 1.62;
-          display: -webkit-box;
-          -webkit-line-clamp: 6;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .voice__who { display: flex; flex-direction: column; gap: 0.15rem; margin-top: auto; }
-        .voice__name { font-weight: 600; color: var(--ink); }
-        .voice__title { font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-mute); }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
-        @media (max-width: 980px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } }
-
-        .term-cta {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(1.6rem, 4vw, 3.4rem);
-          align-items: center;
-          padding: clamp(1.6rem, 4vw, 3rem);
-          border-radius: var(--radius-lg);
-          border: 1px solid var(--line);
-          background: var(--bg-elev);
-          transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out);
-        }
-        .term-cta:hover {
-          border-color: var(--cyan);
-          box-shadow: 0 24px 70px -30px rgba(91, 233, 255, 0.35);
-          transform: translateY(-4px);
-        }
-        .term-cta__demo {
-          border-radius: 14px;
-          border: 1px solid var(--line-strong);
-          background: rgba(6, 7, 12, 0.9);
-          overflow: hidden;
-          font-family: var(--font-mono);
-          font-size: 0.86rem;
-        }
-        .term-cta__bar {
-          display: flex;
-          align-items: center;
-          gap: 0.45rem;
-          padding: 0.6rem 0.9rem;
-          border-bottom: 1px solid var(--line);
-          background: rgba(255, 255, 255, 0.02);
-        }
-        .term-cta__dot { width: 11px; height: 11px; border-radius: 50%; }
-        .term-cta__dot--r { background: #ff5f57; }
-        .term-cta__dot--y { background: #febc2e; }
-        .term-cta__dot--g { background: #28c840; }
-        .term-cta__file { margin-left: 0.5rem; font-size: 0.7rem; color: var(--ink-mute); }
-        .term-cta__lines { padding: 1.1rem 1.2rem 1.3rem; line-height: 2; }
-        .term-cta__lines p { margin: 0; color: var(--ink-dim); }
-        .term-cta__prompt { color: var(--amber); margin-right: 0.5rem; }
-        .term-cta__ok { color: var(--amber); }
-        .term-cta__caret {
-          display: inline-block;
-          width: 0.55em;
-          height: 1.05em;
-          vertical-align: text-bottom;
-          background: var(--cyan);
-          animation: term-cta-blink 0.9s steps(1) infinite;
-        }
-        @keyframes term-cta-blink { 50% { opacity: 0; } }
-        .term-cta__copy {
-          display: flex;
-          flex-direction: column;
-          gap: 0.9rem;
-          align-items: flex-start;
-        }
-        .term-cta__title { font-size: clamp(1.5rem, 3.4vw, 2.3rem); margin: 0; line-height: 1.12; }
-        .term-cta__sub { color: var(--ink-dim); line-height: 1.65; margin: 0; max-width: 42ch; }
-        .term-cta__btn { margin-top: 0.4rem; pointer-events: none; }
-        @media (max-width: 860px) {
-          .term-cta { grid-template-columns: 1fr; }
-          .term-cta__demo { order: 2; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .term-cta__caret { animation: none; }
-        }
-      `}</style>
+      </Section>
+      <Section id="skills" title="Skills & tools.">
+        <div className="grid four">
+          {SKILL_GROUPS.map((group, index) => {
+            const Icon = skillIcons[index];
+            return (
+              <article className="card skill-card" key={group.name} data-reveal>
+                <h3>
+                  <Icon size={22} stroke={1.5} />
+                  {group.name}
+                </h3>
+                <div className="tags">
+                  {group.skills.map(skill => (
+                    <span key={skill}>{skill}</span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+      <Section
+        id="projects"
+        title="Featured projects."
+        to="/projects"
+        linkLabel="View all projects"
+      >
+        <div className="featured-projects">
+          {['jobtracker', 'bitebook'].map(id => (
+            <ProjectCard key={id} project={projects.find(project => project.id === id)} featured />
+          ))}
+        </div>
+      </Section>
+      <Section
+        id="recommendations"
+        title="Trusted by the people I work with."
+        to="/recommendations"
+        linkLabel="View all recommendations"
+      >
+        <div className="grid two">
+          <RecommendationCard
+            recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Enrico Eberhard')}
+            excerpt="He worked very effectively with our UX/UI designer"
+          />
+          <RecommendationCard
+            recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Kajhal Ramsunder')}
+            excerpt="You are always giving us problems with solutions"
+          />
+        </div>
+      </Section>
+      <Section
+        id="certifications"
+        title="Always learning."
+        to="/certifications"
+        linkLabel="View all certifications"
+      >
+        <div className="grid three">
+          {FEATURED_CERTIFICATIONS.map(certification => (
+            <CertificationCard key={certification.title} certification={certification} />
+          ))}
+        </div>
+      </Section>
+      <ContactSection />
     </>
   );
-};
-
-export default Home;
+}

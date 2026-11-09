@@ -11,16 +11,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    chunkSizeWarningLimit: 1100,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ['three'],
-          r3f: ['@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
-          motion: ['framer-motion'],
-        },
-      },
-    },
   },
   
   resolve: {
@@ -31,6 +21,6 @@ export default defineConfig({
   
   server: {
     port: 3000,
-    open: true
+    open: false
   }
 });

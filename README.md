@@ -1,122 +1,62 @@
 # Hassan Shahzad — Portfolio
 
-A cinematic, scroll-driven portfolio built to prove a point: that an engineer can also design and ship an award-grade interface. The homepage isn't a stack of sections — it's a single pinned 3D world you scroll *through*, rendered with a hand-written GLSL shader and React Three Fiber.
+A lightweight React portfolio at [hxndev.com](https://hxndev.com), with matching charcoal and light themes, an interactive wireframe globe, and a single scrolling overview.
 
-Live: **[https://hxndev.com](https://hxndev.com)**
+## Local development
 
-## Highlights
-
-- **Scroll-driven 3D hero.** One persistent crystal whose camera dolly, drift, scale, rotation, and surface morph are all driven directly by scroll progress (GSAP ScrollTrigger → R3F render loop). Text "acts" reveal *inside* the same world.
-- **Hand-written GLSL.** A custom aurora backdrop shader (domain-warped fractal noise) — no Spline, no shader libraries — that reacts to the cursor and refracts through the glass.
-- **"Aurora Noir" design system.** Deep near-black canvas with an electric-cyan primary and a warm-amber accent. Cyan + amber sit on the blue–yellow axis, the most colorblind-safe high-contrast pairing, so hierarchy reads through luminance *and* hue.
-- **Buttery motion.** Lenis momentum scrolling synced to GSAP, a magnetic custom cursor, and Framer Motion reveals.
-- **Terminal boot preloader.** The site boots like a shell — a zsh-style window types through a fake boot log (`npx hxndev@latest boot`) before the curtain lifts. Every visit ends with a choice, right in the terminal: **Explorer** (full cinematic) or **Recruiter** (fast & focused).
-- **Interactive terminal.** A real, working shell at `/terminal` (reachable from the homepage teaser, footer and mobile menu): `help`, `projects`, `open <id>`, `skills`, `neofetch`, tab-completion, arrow-key history — and `sudo hire-me`.
-- **Play mode.** An opt-in mini-game: the cursor becomes a rocket, collectible orbs are scattered down the page, and a confetti win dialog tops it off. Auto-disabled on touch and reduced-motion.
-- **Cheat code.** Type `play` anywhere on the site and the rocket game launches with a toast.
-- **Designed 404.** Wrong URLs get a custom "lost in the aurora" page instead of a silent redirect.
-- **Recruiter mode.** Picked from the boot terminal on every visit — it flattens the whole experience: no 3D, no animations, system cursor, a clean scannable hero with stats and CTAs. The playful extras (play mode, terminal, live GitHub feed) are hidden too. Cinematic mode proves the craft; recruiter mode proves the judgment.
-- **Live GitHub feed.** A "Proof of life" section on the homepage pulls repo stats and the latest commits straight from the public GitHub API (localStorage-cached, fails silently offline).
-- **Performance-conscious.** Device-tiered 3D quality, clamped DPR, off-screen render pausing, lazy-loaded routes, and full `prefers-reduced-motion` support.
-
-## Tech Stack
-
-- **React 18** + **Vite** — fast SPA tooling and HMR.
-- **React Router 7** — client-side routing with lazy-loaded pages.
-- **Three.js** + **@react-three/fiber** + **@react-three/drei** — declarative 3D.
-- **@react-three/postprocessing** — bloom and post effects.
-- **Custom GLSL** — the aurora backdrop fragment shader.
-- **GSAP (ScrollTrigger)** + **Lenis** — scroll choreography and smooth scrolling.
-- **Framer Motion** — UI transitions and staggered reveals.
-- **Tabler Icons** — iconography.
-- **ESLint** + **Prettier** — code quality and formatting.
-- **Vercel** — hosting with SPA rewrites (`vercel.json`), custom domain `hxndev.com`.
-
-## Getting Started
-
-```bash
-# Clone
-git clone https://github.com/HxnDev/hxndev.github.io.git
-cd hxndev.github.io
-
-# Install
+```sh
 npm install
-
-# Develop (http://localhost:3000)
 npm run dev
-
-# Production build → ./dist
-npm run build
-
-# Preview the production build
-npm run preview
 ```
 
-### Quality checks
+Open the URL printed by Vite, normally http://localhost:3000. If that port is occupied, Vite prints the next available port. The server does not open a browser automatically.
 
-```bash
-npm run lint          # ESLint
-npm run format        # Prettier (write)
-npm run format:check  # Prettier (check)
-npm run check         # lint + format check
+## Quality checks
+
+```sh
+npm run typecheck
+npm run lint
+npm run format:check
 ```
 
-## Project Structure
+JavaScript source is checked with TypeScript (checkJs), ESLint and Prettier. There is no automated browser test suite. Browser QA and production measurements are separate from static checks. Do not run a production build, deploy or push without explicit authorization.
 
-```
-hxndev.github.io/
-├── .github/workflows/        # CI/CD (build + deploy to gh-pages)
-├── public/                   # Static assets (images, resume, project media)
-├── src/
-│   ├── components/
-│   │   ├── common/           # Marquee and shared bits
-│   │   ├── core/             # Cursor, SmoothScroll, Preloader (terminal boot),
-│   │   │                     #   Grain, Magnetic, UIModeProvider (recruiter/cinematic)
-│   │   ├── game/             # PlayMode (rocket game), CheatCode, GameProvider
-│   │   ├── home/             # CinematicStage, RecruiterHero, GitHubActivity
-│   │   ├── layout/           # Navbar, Footer
-│   │   ├── projects/         # ProjectCard, ProjectModal
-│   │   ├── three/            # CinematicScene, AuroraBackdrop (GLSL)
-│   │   └── utils/            # Asset path helpers
-│   ├── data/                 # profile, skills, experience, certifications,
-│   │                         #   recommendations, projects.json
-│   ├── hooks/                # useGetProjects, useScrollReveal
-│   ├── pages/                # Home, Projects, About, Certifications,
-│   │                         #   Recommendations, Contact, Terminal, NotFound
-│   ├── styles/               # global.css (design tokens), ui.css
-│   ├── App.jsx               # Routing + global layout
-│   └── main.jsx              # Entry point
-├── index.html
-├── vite.config.js
-└── README.md
-```
+## Navigation and content
 
-## Architecture Notes
+- /: Hero → About → Experience → Skills & tools → Featured projects → Recommendations → Certifications → Contact.
+- /experience: full career history and education.
+- /projects: searchable project archive with category filters.
+- /projects/:id: individual descriptions, highlights, technologies, live links and source links.
+- /recommendations: full recommendations, searchable and filterable by relationship.
+- /certifications: full credentials, searchable and filterable by issuer. Credentials without public URLs remain non-clickable.
+- Legacy /about and /contact links return to homepage sections. /terminal returns home. /projects?project=id opens the matching detail page. /JobFit and its child paths still redirect to the standalone app.
 
-- **Cinematic flow.** `CinematicStage.jsx` owns a tall scroll region with a `position: sticky` viewport. A single `ScrollTrigger` writes scroll progress (0→1) into a ref that `CinematicScene.jsx` reads every frame to animate the camera and crystal, and derives the active text act from. This keeps per-frame work off the React render path.
-- **Data-driven content.** All résumé content (experience, skills, certifications, recommendations, stats) lives in small modules under `src/data/`, so updating the site is a content edit, not a code change.
-- **Accessibility.** Honors reduced-motion (disables smooth scroll, freezes shader time, drops heavy 3D), keyboard-navigable, and built on a colorblind-safe palette.
+Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Product preview images are existing local assets, not generated representations of functionality. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
 
-## Deployment
+## Performance and motion
 
-Hosted on **Vercel** at [hxndev.com](https://hxndev.com). Every push to `main` triggers an automatic production deployment; `vercel.json` rewrites all routes to `index.html` so React Router deep links work on refresh.
+- Native scrolling with smooth anchor navigation, without scroll interception or pinned stages.
+- CSS entrances and hover/focus feedback. Content starts visible; reveal effects are progressive enhancements.
+- Canvas 2D globe with pixel density capped at 2 and drawing limited to approximately 30fps. Its animation loop stops offscreen, in hidden tabs, when paused, or when reduced motion is requested.
+- Reduced motion also disables scroll animations and CSS transitions.
+- Detail routes load on demand; project images load lazily with reserved aspect ratios.
+- Self-hosted DM Sans with system-font fallback. No homepage GitHub API, remote placeholder images or font-service requests.
+- Retired terminal, games, custom cursor, preloader, shaders, post-processing, GSAP, Lenis, Framer Motion and Three.js dependencies removed.
 
-## Sister Projects
+Globe land outlines derive from [Natural Earth 1:110m land](https://www.naturalearthdata.com/downloads/110m-physical-vectors/110m-land/), public-domain data. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
 
-Two other live apps on the same domain, both featured on the Work page:
+## Hosting
 
-- **[BiteBook](https://bitebook.hxndev.com)** ([repo](https://github.com/HxnDev/BiteBook)) — a shared family recipe book with photos and per-100g macros. React + TypeScript + Supabase, with an IndexedDB offline fallback.
-- **[JobTracker](https://jobs.hxndev.com)** ([repo](https://github.com/HxnDev/JobTracker)) — a job-application dashboard where a Google Sheet stays the database, via browser-only OAuth. No backend.
+The existing Vercel rewrite serves client-side routes on refresh. The existing GitHub Pages workflow runs on pushes to main; pushes can trigger deployment. Hosting configuration and release version are unchanged. User review is required before pushing.
 
-## License
+## Manual review
 
-Distributed under the MIT License. See `LICENSE` for details.
+1. Check the full homepage in both themes, including persistence after refresh.
+2. Check menu and cards at phone and desktop widths.
+3. Follow each View all link and a project detail, then test browser Back.
+4. Try collection search, category/issuer/relationship filters, and empty-state reset.
+5. Use Tab, Enter and Escape; check skip link, focus outlines and menu dismissal.
+6. Enable reduced motion; confirm a static globe and immediate scrolling.
+7. Check résumé links and the email draft handoff in your own browser/email client.
 
-## Contact
-
-**Hassan Shahzad** — Senior Full-Stack Engineer (Geneva, CH)
-
-- Email: [hassanshahzad.dev@gmail.com](mailto:hassanshahzad.dev@gmail.com)
-- LinkedIn: [hassan-shahzad-2a6617212](https://www.linkedin.com/in/hassan-shahzad-2a6617212/)
-- GitHub: [HxnDev](https://github.com/HxnDev)
-- Portfolio: [https://hxndev.com](https://hxndev.com)
+No production performance score or real-device behavior is implied by local checks.

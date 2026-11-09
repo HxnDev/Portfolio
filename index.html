@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>Hassan Shahzad | Portfolio</title>
+    <meta name="description" content="Hassan Shahzad — senior full-stack engineer in Geneva. Robotics interfaces, research platforms, and dependable web applications. Explore selected work and experience." />
+    <meta name="theme-color" content="#0d0e12" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem('hxndev-theme') === 'light' ? 'light' : 'dark'; } catch { document.documentElement.dataset.theme = 'dark'; }
+    </script>
   </head>
   <body>
     <div id="root"></div>

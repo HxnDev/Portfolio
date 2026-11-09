@@ -1,313 +1,115 @@
-import { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { IconArrowUpRight, IconMenu2, IconX, IconDeviceGamepad2 } from '@tabler/icons-react';
-import Magnetic from '@/components/core/Magnetic';
-import { useGame } from '@/components/game/gameContext';
-import { useUIMode } from '@/components/core/uiModeContext';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { IconMenu2, IconX, IconSun, IconMoon } from '@tabler/icons-react';
 
-const LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/projects', label: 'Work' },
-  { to: '/about', label: 'About' },
-  { to: '/certifications', label: 'Certifications' },
-  { to: '/recommendations', label: 'Recommendations' },
-  { to: '/contact', label: 'Contact' },
+const links = [
+  ['home', 'Home'],
+  ['about', 'About'],
+  ['experience', 'Experience'],
+  ['projects', 'Projects'],
+  ['contact', 'Contact'],
 ];
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar() {
+  const menuButton = useRef(null);
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'dark');
+  const [active, setActive] = useState('home');
   const location = useLocation();
-  const { active: playing, toggle: togglePlay } = useGame();
-  const { recruiter, toggleRecruiter } = useUIMode();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   useEffect(() => {
     setOpen(false);
+  }, [location]);
+  useEffect(() => {
+    if (open) document.getElementById('site-nav')?.querySelector('a')?.focus();
+  }, [open]);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#0d0e12' : '#fafbfd');
+    try {
+      localStorage.setItem('hxndev-theme', theme);
+    } catch {
+      /* Theme still works without storage. */
+    }
+  }, [theme]);
+  useEffect(() => {
+    const close = event => {
+      if (event.key === 'Escape' && open) {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', close);
+    return () => document.removeEventListener('keydown', close);
+  }, [open]);
+  useEffect(() => {
+    if (location.pathname !== '/' || !('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-15% 0px -65% 0px' }
+    );
+    links.forEach(([id]) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+    return () => observer.disconnect();
   }, [location.pathname]);
-
+  const current = location.pathname === '/' ? active : location.pathname.split('/')[1];
   return (
-    <>
-      <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
-        <div className="nav__inner container">
-          <Link to="/" className="nav__brand" aria-label="Home">
-            <span className="nav__mark">HS</span>
-            <span className="nav__name">Hassan Shahzad</span>
-          </Link>
-
-          <nav className="nav__links">
-            {LINKS.map(link => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
-              >
-                <span>{link.label}</span>
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="nav__cta">
-            {!recruiter && (
-              <button
-                className={`nav__game ${playing ? 'is-on' : ''}`}
-                onClick={togglePlay}
-                aria-pressed={playing}
-                aria-label={playing ? 'Exit play mode' : 'Enter play mode'}
-                title={playing ? 'Exit play mode' : 'Play mode — fly a rocket & collect orbs'}
-              >
-                {playing ? <IconX size={18} /> : <IconDeviceGamepad2 size={18} />}
-                <span>{playing ? 'Exit game' : 'Play'}</span>
-              </button>
-            )}
-            <Magnetic strength={0.4}>
-              <a
-                href="/assets/resume/hassan_resume.pdf"
-                download="hassan_resume.pdf"
-                className="btn btn--primary"
-              >
-                <span>Résumé</span>
-                <IconArrowUpRight size={17} />
-              </a>
-            </Magnetic>
-          </div>
-
-          <button
-            className="nav__burger"
-            onClick={() => setOpen(o => !o)}
-            aria-label="Toggle menu"
+    <header className="site-header">
+      <div className="container nav-bar">
+        <Link className="wordmark" to="/#home" aria-label="hxndev home">
+          hxndev<span>.</span>
+        </Link>
+        <nav
+          aria-label="Main navigation"
+          id="site-nav"
+          className={open ? 'navigation is-open' : 'navigation'}
+        >
+          {links.map(([id, label]) => (
+            <Link
+              key={id}
+              to={`/#${id}`}
+              aria-current={current === id ? 'location' : undefined}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+          <a
+            className="nav-resume"
+            href="/assets/resume/hassan_resume.pdf"
+            target="_blank"
+            rel="noreferrer"
           >
-            {open ? <IconX size={24} /> : <IconMenu2 size={24} />}
+            Résumé ↗
+          </a>
+        </nav>
+        <div className="nav-actions">
+          <button
+            className="icon-button"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          >
+            {theme === 'dark' ? <IconSun size={19} /> : <IconMoon size={19} />}
+          </button>
+          <button
+            ref={menuButton}
+            className="icon-button menu-toggle"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="site-nav"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <IconX size={21} /> : <IconMenu2 size={21} />}
           </button>
         </div>
-      </header>
-
-      <div className={`mobile-menu ${open ? 'is-open' : ''}`}>
-        <nav>
-          {LINKS.map((link, i) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === '/'}
-              className="mobile-menu__link"
-              style={{ transitionDelay: `${0.08 + i * 0.06}s` }}
-            >
-              <span className="mobile-menu__idx">0{i + 1}</span>
-              {link.label}
-            </NavLink>
-          ))}
-          {!recruiter && (
-            <NavLink
-              to="/terminal"
-              className="mobile-menu__link"
-              style={{ transitionDelay: `${0.08 + LINKS.length * 0.06}s` }}
-            >
-              <span className="mobile-menu__idx">$_</span>
-              Terminal
-            </NavLink>
-          )}
-          <a
-            href="/assets/resume/hassan_resume.pdf"
-            download="hassan_resume.pdf"
-            className="mobile-menu__link"
-            style={{ transitionDelay: `${0.08 + (LINKS.length + 1) * 0.06}s` }}
-          >
-            <span className="mobile-menu__idx">↗</span>
-            Résumé
-          </a>
-          <button
-            className="mobile-menu__link mobile-menu__link--btn"
-            style={{ transitionDelay: `${0.08 + (LINKS.length + 2) * 0.06}s` }}
-            onClick={() => {
-              toggleRecruiter();
-              setOpen(false);
-            }}
-          >
-            <span className="mobile-menu__idx">{recruiter ? '✦' : '▤'}</span>
-            {recruiter ? 'Cinematic mode' : 'Recruiter mode'}
-          </button>
-        </nav>
       </div>
-
-      <style>{`
-        .nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 9000;
-          transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
-          border-bottom: 1px solid transparent;
-        }
-        .nav.is-scrolled {
-          background: rgba(8, 9, 14, 0.6);
-          backdrop-filter: blur(16px) saturate(150%);
-          -webkit-backdrop-filter: blur(16px) saturate(150%);
-          border-bottom: 1px solid var(--line);
-        }
-        .nav__inner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 76px;
-        }
-        .nav__brand {
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
-          font-family: var(--font-display);
-          font-weight: 700;
-        }
-        .nav__mark {
-          display: grid;
-          place-items: center;
-          width: 38px;
-          height: 38px;
-          border-radius: 12px;
-          background: var(--grad-ice);
-          color: #07080d;
-          font-size: 0.95rem;
-          letter-spacing: -0.03em;
-        }
-        .nav__name {
-          font-size: 1.02rem;
-          letter-spacing: -0.01em;
-        }
-        .nav__links {
-          display: flex;
-          gap: 0.2rem;
-          padding: 0.3rem;
-          border-radius: 99px;
-          border: 1px solid var(--line);
-          background: rgba(255, 255, 255, 0.02);
-        }
-        .nav__link {
-          position: relative;
-          padding: 0.5rem 0.9rem;
-          border-radius: 99px;
-          font-size: 0.86rem;
-          font-weight: 500;
-          white-space: nowrap;
-          color: var(--ink-dim);
-          transition: color 0.3s ease, background 0.3s ease;
-        }
-        .nav__link:hover {
-          color: var(--ink);
-        }
-        .nav__link.is-active {
-          color: #07080d;
-          background: var(--ink);
-        }
-        .nav__burger {
-          display: none;
-          color: var(--ink);
-        }
-        .nav__cta {
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
-        }
-        /* Play toggle: only meaningful with a real cursor, so it's hidden on
-           touch devices where there's nothing to fly. */
-        .nav__game {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          padding: 0.55rem 0.95rem;
-          border-radius: 99px;
-          border: 1px solid var(--line-strong);
-          color: var(--ink-dim);
-          font-family: var(--font-mono);
-          font-size: 0.76rem;
-          letter-spacing: 0.04em;
-          transition: all 0.3s var(--ease-out);
-        }
-        .nav__game:hover {
-          color: var(--amber);
-          border-color: var(--amber);
-          box-shadow: var(--glow-amber);
-        }
-        .nav__game.is-on {
-          color: #07080d;
-          background: var(--amber);
-          border-color: var(--amber);
-        }
-        @media (pointer: coarse) {
-          .nav__game { display: none; }
-        }
-        @media (max-width: 1080px) {
-          .nav__links,
-          .nav__cta {
-            display: none;
-          }
-          .nav__burger {
-            display: inline-flex;
-          }
-        }
-
-        .mobile-menu {
-          position: fixed;
-          inset: 0;
-          z-index: 8900;
-          background: rgba(6, 7, 11, 0.96);
-          backdrop-filter: blur(20px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          clip-path: circle(0% at calc(100% - 44px) 44px);
-          transition: clip-path 0.7s var(--ease-in-out);
-          pointer-events: none;
-        }
-        .mobile-menu.is-open {
-          clip-path: circle(150% at calc(100% - 44px) 44px);
-          pointer-events: auto;
-        }
-        .mobile-menu nav {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          padding: var(--gutter);
-          width: 100%;
-        }
-        .mobile-menu__link {
-          display: flex;
-          align-items: baseline;
-          gap: 0.8rem;
-          font-family: var(--font-display);
-          font-weight: 700;
-          font-size: clamp(1.7rem, 8vw, 2.8rem);
-          color: var(--ink);
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s ease;
-          letter-spacing: -0.02em;
-        }
-        .mobile-menu.is-open .mobile-menu__link {
-          opacity: 1;
-          transform: none;
-        }
-        .mobile-menu__link:hover {
-          color: var(--cyan);
-        }
-        .mobile-menu__idx {
-          font-family: var(--font-mono);
-          font-size: 0.9rem;
-          color: var(--ink-mute);
-        }
-        .mobile-menu__link--btn {
-          text-align: left;
-          padding: 0;
-        }
-      `}</style>
-    </>
+    </header>
   );
-};
-
-export default Navbar;
+}

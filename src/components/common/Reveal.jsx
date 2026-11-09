@@ -20,7 +20,7 @@ export default function Reveal({ children }) {
           node.classList.add('revealed');
           observer.disconnect();
         },
-        { threshold: 0.12 }
+        { threshold: 0, rootMargin: '0px 0px -55px 0px' }
       );
       observer.observe(node);
     };

@@ -59,6 +59,26 @@ export const EDUCATION = [
     school: 'National University of Computer & Emerging Sciences (FAST-NUCES)',
     degree: 'Bachelor of Science in Computer Science',
     date: '2018 — 2022',
+    logo: 'fast-supplied.jpeg',
+    shortName: 'FAST–NUCES',
+    points: [
+      'Built a foundation in algorithms, data structures, databases, operating systems and software engineering.',
+      'Applied classroom concepts through hands-on web applications, computer vision experiments and team software projects.',
+      'Worked on industry-oriented collaborative projects, from requirements and prototyping to implementation and presentations.',
+    ],
     location: 'Islamabad, Pakistan',
+  },
+  {
+    school: 'Punjab College of Information & Technology',
+    shortName: 'Punjab College',
+    degree: 'Intermediate studies',
+    date: '2016 — 2018',
+    location: 'Rawalpindi, Pakistan',
+    logo: 'punjab-college.png',
+    points: [
+      'Studied foundational engineering principles and the mathematics needed for university-level study.',
+      'Developed an understanding of core computer science concepts alongside physics and chemistry.',
+      'Practised analytical problem-solving through laboratory work, coursework and collaborative assignments.',
+    ],
   },
 ];

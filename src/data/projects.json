@@ -1,10 +1,161 @@
 {
   "projects": [
     {
+      "id": "viora",
+      "title": "Viora",
+      "description": "Fitness, nutrition and progress in one personal daily companion.",
+      "longDescription": "Viora is a local-first Android fitness and nutrition tracker. It brings together a food diary, activity, hydration, fasting, body measurements and progress photos, with encrypted Google Drive backups and read-only Health Connect integration.",
+      "technologies": ["React Native", "TypeScript", "Expo", "SQLite"],
+      "category": "mobile",
+      "date": "2026",
+      "features": [
+        "Food diary and nutrition tracking",
+        "Activity, hydration and progress tracking",
+        "Encrypted backups and offline diary access"
+      ],
+      "media": {
+        "orientation": "portrait",
+        "src": "/assets/gifs/viora.gif",
+        "kind": "gif",
+        "poster": "/images/projects/viora-poster.jpg"
+      },
+      "featured": true,
+      "overview": "Food diaries, workouts, health data and progress tracking, with local storage and encrypted backups.",
+      "projectType": "Fitness & nutrition app",
+      "githubUrl": "https://github.com/HxnDev/Viora",
+      "liveUrl": "https://play.google.com/store/apps/details?id=com.hxndev.viora&pcampaignid=web_share",
+      "liveLabel": "Download on Play Store"
+    },
+    {
+      "id": "nexus",
+      "title": "Nexus",
+      "description": "A calmer home for your notes, tasks, plans and everyday life.",
+      "longDescription": "Nexus is a local-first personal organization app that brings notes, tasks, checklists, events and reminders into a connected workspace. Home, Library and Planner offer different views of the same information, with device-calendar integration and account-scoped local storage.",
+      "technologies": ["React Native", "TypeScript", "Expo", "SQLite"],
+      "category": "mobile",
+      "date": "2026",
+      "features": [
+        "Notes, tasks, checklists and reminders",
+        "Home, Library and Planner views",
+        "Device-calendar integration and local-first storage"
+      ],
+      "media": {
+        "orientation": "portrait",
+        "src": "/assets/gifs/nexus.gif",
+        "kind": "gif",
+        "poster": "/images/projects/nexus-poster.jpg"
+      },
+      "featured": true,
+      "overview": "A connected workspace for notes, tasks, events and reminders, with device-calendar integration and offline storage.",
+      "projectType": "Personal organization app",
+      "githubUrl": "https://github.com/HxnDev/Nexus",
+      "liveUrl": "https://nexus.hxndev.com"
+    },
+    {
+      "id": "odyssey",
+      "title": "Odyssey",
+      "description": "Every journey, beautifully remembered. A personal archive of the places you\u2019ve been.",
+      "longDescription": "Odyssey is a personal travel companion with an offline world map, a searchable trip archive, multi-leg flight tracking and travel statistics. Country statuses, visited cities, trip highlights and passport-style stamps turn scattered travel memories into a lasting record.",
+      "technologies": ["React Native", "TypeScript", "MapLibre", "Supabase"],
+      "category": "mobile",
+      "date": "2026",
+      "features": [
+        "Offline world map and visited places",
+        "Trips and multi-leg flight tracking",
+        "Travel statistics and country stamps"
+      ],
+      "media": {
+        "orientation": "portrait",
+        "src": "/assets/gifs/odyssey.gif",
+        "kind": "gif",
+        "poster": "/images/projects/odyssey-poster.jpg"
+      },
+      "featured": true,
+      "overview": "An offline world map, trip archive, flight tracking and travel statistics in one mobile companion.",
+      "projectType": "Travel companion",
+      "githubUrl": "https://github.com/HxnDev/Odyssey"
+    },
+    {
+      "id": "afterlight",
+      "title": "Afterlight",
+      "description": "Your films, series and next great watch, in one beautifully organized collection.",
+      "longDescription": "Afterlight brings movie and series collections into a dedicated app: title and poster lookup, personal notes, saved links and watch-status tracking. The collection currently lives in Nexus and is planned as a standalone product.",
+      "technologies": ["React Native", "TypeScript"],
+      "category": "mobile",
+      "date": "In development",
+      "features": [],
+      "media": {
+        "orientation": "portrait",
+        "src": "/assets/gifs/afterlight.gif",
+        "kind": "gif",
+        "poster": "/images/projects/afterlight-poster.jpg"
+      },
+      "featured": true,
+      "overview": "A focused film and series directory with poster search, personal notes and watch-status tracking. The standalone app is in development.",
+      "projectType": "Film & series directory",
+      "liveUrl": "https://nexus.hxndev.com"
+    },
+    {
+      "id": "jobfit",
+      "title": "JobFit",
+      "description": "A comprehensive job matching and recommendation platform that uses AI to connect job seekers with suitable opportunities.",
+      "longDescription": "JobFit is an intelligent job matching platform that analyzes user skills and preferences to recommend the most suitable job opportunities. It features resume parsing, skill assessment, and personalized job recommendations to streamline the job search process.",
+      "image": "images/projects/job-fit.jpg",
+      "fallbackImage": "https://placehold.co/600x400/9B00FF/FFFFFF?text=JobFit",
+      "technologies": ["Python", "Machine Learning", "NLP", "Flask", "React"],
+      "githubUrl": "https://github.com/HxnDev/JobFit",
+      "liveUrl": "https://jobfit.hxndev.com",
+      "featured": true,
+      "category": "ai",
+      "date": "2023",
+      "features": [
+        "AI-powered job matching algorithm",
+        "Resume parsing and analysis",
+        "Personalized job recommendations",
+        "Skill gap analysis",
+        "ATS compatibility checking",
+        "Cover letter generation",
+        "Interview preparation tools"
+      ],
+      "media": {
+        "orientation": "landscape",
+        "src": "/assets/gifs/jobfit.gif",
+        "kind": "gif",
+        "poster": "/images/projects/jobfit-poster.jpg"
+      },
+      "overview": "A job matching platform with r\u00e9sum\u00e9 analysis, skill assessment and personalized recommendations.",
+      "projectType": "AI job matching platform"
+    },
+    {
+      "id": "mancave",
+      "title": "ManCave",
+      "description": "Everything you collect, finally in one place. Your personal collection vault.",
+      "longDescription": "ManCave brings books, LEGO sets, games, perfumes and other collections into one personal vault. Its web and Android apps share a Supabase backend, with customizable categories, photo uploads, collection shelves, search and dashboards.",
+      "technologies": ["React", "React Native", "TypeScript", "Supabase"],
+      "category": "web",
+      "date": "2026",
+      "liveUrl": "https://vault.hxndev.com",
+      "features": [
+        "Web and mobile collection management",
+        "Custom categories, fields and photo uploads",
+        "Collection shelves, search and dashboards"
+      ],
+      "media": {
+        "orientation": "landscape",
+        "src": "/assets/gifs/mancave.gif",
+        "kind": "gif",
+        "poster": "/images/projects/mancave-poster.jpg"
+      },
+      "featured": true,
+      "overview": "A collection vault across web and mobile, with customizable categories, photos, search and dashboards.",
+      "projectType": "Collection vault",
+      "githubUrl": "https://github.com/HxnDev/HxnManCave"
+    },
+    {
       "id": "bitebook",
       "title": "BiteBook",
-      "description": "A shared family recipe book that feels like a flagship product — photos, flexible ingredients, and per-100g macros, live at bitebook.hxndev.com.",
-      "longDescription": "BiteBook turns scattered recipe notes into a living cookbook. Recipes carry compressed photo uploads, flexible ingredient lines, step-by-step instructions and manually entered macros normalized per 100g. There is no login — anyone in the family with the link can browse, add and edit. Data lives in Supabase (Postgres + Storage) with a full IndexedDB fallback so the app also runs local-first and offline. The landing page is a motion-first experience: an animated GLSL hero, GSAP scroll narrative and smooth Lenis scrolling, all with a prefers-reduced-motion fallback.",
+      "description": "A shared family recipe book that feels like a flagship product \u2014 photos, flexible ingredients, and per-100g macros, live at bitebook.hxndev.com.",
+      "longDescription": "BiteBook turns scattered recipe notes into a living cookbook. Recipes carry compressed photo uploads, flexible ingredient lines, step-by-step instructions and manually entered macros normalized per 100g. There is no login \u2014 anyone in the family with the link can browse, add and edit. Data lives in Supabase (Postgres + Storage) with a full IndexedDB fallback so the app also runs local-first and offline. The landing page is a motion-first experience: an animated GLSL hero, GSAP scroll narrative and smooth Lenis scrolling, all with a prefers-reduced-motion fallback.",
       "image": "images/projects/bitebook.jpg",
       "fallbackImage": "https://placehold.co/600x400/FF9D2E/FFFFFF?text=BiteBook",
       "technologies": [
@@ -35,8 +186,8 @@
     {
       "id": "jobtracker",
       "title": "JobTracker",
-      "description": "A live job-application dashboard where a Google Sheet stays the database — browser-only OAuth, real CRUD and analytics, live at jobs.hxndev.com.",
-      "longDescription": "JobTracker is a modern interface for my Switzerland job-application tracker. The Google Sheet remains the single source of truth: the app reads it, renders it beautifully, and writes changes straight back through the Google Sheets API using browser-only OAuth (Google Identity Services) — no backend, no database, no server. It handles the messy real-world sheet gracefully: mixed date formats, typos like 'Hybird', and hidden =HYPERLINK() formulas are all parsed correctly, while formula columns are never overwritten. An analytics dashboard adds KPIs and charts for applications over time, status breakdown, top locations and work modes.",
+      "description": "A live job-application dashboard where a Google Sheet stays the database \u2014 browser-only OAuth, real CRUD and analytics, live at jobs.hxndev.com.",
+      "longDescription": "JobTracker is a modern interface for my Switzerland job-application tracker. The Google Sheet remains the single source of truth: the app reads it, renders it beautifully, and writes changes straight back through the Google Sheets API using browser-only OAuth (Google Identity Services) \u2014 no backend, no database, no server. It handles the messy real-world sheet gracefully: mixed date formats, typos like 'Hybird', and hidden =HYPERLINK() formulas are all parsed correctly, while formula columns are never overwritten. An analytics dashboard adds KPIs and charts for applications over time, status breakdown, top locations and work modes.",
       "image": "images/projects/jobtracker.jpg",
       "fallbackImage": "https://placehold.co/600x400/6FA8FF/FFFFFF?text=JobTracker",
       "technologies": [
@@ -55,7 +206,7 @@
       "category": "web",
       "date": "2026",
       "features": [
-        "Google Sheet as the live database — reads and writes",
+        "Google Sheet as the live database \u2014 reads and writes",
         "Browser-only OAuth, no client secret or backend",
         "Full CRUD: add, edit, change status, open job links",
         "Search, filter and sort by status, work mode, city and date",
@@ -63,34 +214,6 @@
         "Parses messy data: mixed date formats and hidden HYPERLINK formulas",
         "Never overwrites spreadsheet formula columns"
       ]
-    },
-    {
-      "id": "jobfit",
-      "title": "JobFit",
-      "description": "A comprehensive job matching and recommendation platform that uses AI to connect job seekers with suitable opportunities.",
-      "longDescription": "JobFit is an intelligent job matching platform that analyzes user skills and preferences to recommend the most suitable job opportunities. It features resume parsing, skill assessment, and personalized job recommendations to streamline the job search process.",
-      "image": "images/projects/job-fit.jpg",
-      "fallbackImage": "https://placehold.co/600x400/9B00FF/FFFFFF?text=JobFit",
-      "technologies": ["Python", "Machine Learning", "NLP", "Flask", "React"],
-      "githubUrl": "https://github.com/HxnDev/JobFit",
-      "liveUrl": "https://jobfit.hxndev.com",
-      "featured": true,
-      "category": "ai",
-      "date": "2023",
-      "features": [
-        "AI-powered job matching algorithm",
-        "Resume parsing and analysis",
-        "Personalized job recommendations",
-        "Skill gap analysis",
-        "ATS compatibility checking",
-        "Cover letter generation",
-        "Interview preparation tools"
-      ],
-      "media": {
-        "orientation": "landscape",
-        "src": null
-      },
-      "overview": "A job matching platform with résumé analysis, skill assessment and personalized recommendations."
     },
     {
       "id": "portfolio-website",
@@ -558,103 +681,6 @@
         "Educational resources on password security",
         "Visualization of cracking process"
       ]
-    },
-    {
-      "id": "viora",
-      "title": "Viora",
-      "description": "Fitness, nutrition and progress in one personal daily companion.",
-      "longDescription": "Viora is a local-first Android fitness and nutrition tracker. It brings together a food diary, activity, hydration, fasting, body measurements and progress photos, with encrypted Google Drive backups and read-only Health Connect integration.",
-      "technologies": ["React Native", "TypeScript", "Expo", "SQLite"],
-      "category": "mobile",
-      "date": "2026",
-      "features": [
-        "Food diary and nutrition tracking",
-        "Activity, hydration and progress tracking",
-        "Encrypted backups and offline diary access"
-      ],
-      "media": {
-        "orientation": "portrait",
-        "src": null
-      },
-      "featured": true,
-      "overview": "Food diaries, workouts, health data and progress tracking, with local storage and encrypted backups."
-    },
-    {
-      "id": "nexus",
-      "title": "Nexus",
-      "description": "A calmer home for your notes, tasks, plans and everyday life.",
-      "longDescription": "Nexus is a local-first personal organization app that brings notes, tasks, checklists, events and reminders into a connected workspace. Home, Library and Planner offer different views of the same information, with device-calendar integration and account-scoped local storage.",
-      "technologies": ["React Native", "TypeScript", "Expo", "SQLite"],
-      "category": "mobile",
-      "date": "2026",
-      "features": [
-        "Notes, tasks, checklists and reminders",
-        "Home, Library and Planner views",
-        "Device-calendar integration and local-first storage"
-      ],
-      "media": {
-        "orientation": "portrait",
-        "src": null
-      },
-      "featured": true,
-      "overview": "A connected workspace for notes, tasks, events and reminders, with device-calendar integration and offline storage."
-    },
-    {
-      "id": "odyssey",
-      "title": "Odyssey",
-      "description": "Every journey, beautifully remembered. A personal archive of the places you’ve been.",
-      "longDescription": "Odyssey is a personal travel companion with an offline world map, a searchable trip archive, multi-leg flight tracking and travel statistics. Country statuses, visited cities, trip highlights and passport-style stamps turn scattered travel memories into a lasting record.",
-      "technologies": ["React Native", "TypeScript", "MapLibre", "Supabase"],
-      "category": "mobile",
-      "date": "2026",
-      "features": [
-        "Offline world map and visited places",
-        "Trips and multi-leg flight tracking",
-        "Travel statistics and country stamps"
-      ],
-      "media": {
-        "orientation": "portrait",
-        "src": null
-      },
-      "featured": true,
-      "overview": "An offline world map, trip archive, flight tracking and travel statistics in one mobile companion."
-    },
-    {
-      "id": "mancave",
-      "title": "ManCave",
-      "description": "Everything you collect, finally in one place. Your personal collection vault.",
-      "longDescription": "ManCave brings books, LEGO sets, games, perfumes and other collections into one personal vault. Its web and Android apps share a Supabase backend, with customizable categories, photo uploads, collection shelves, search and dashboards.",
-      "technologies": ["React", "React Native", "TypeScript", "Supabase"],
-      "category": "web",
-      "date": "2026",
-      "liveUrl": "https://vault.hxndev.com",
-      "features": [
-        "Web and mobile collection management",
-        "Custom categories, fields and photo uploads",
-        "Collection shelves, search and dashboards"
-      ],
-      "media": {
-        "orientation": "landscape",
-        "src": null
-      },
-      "featured": true,
-      "overview": "A collection vault across web and mobile, with customizable categories, photos, search and dashboards."
-    },
-    {
-      "id": "afterlight",
-      "title": "Afterlight",
-      "description": "Your films, series and next great watch, in one beautifully organized collection.",
-      "longDescription": "Afterlight brings movie and series collections into a dedicated app: title and poster lookup, personal notes, saved links and watch-status tracking. The collection currently lives in Nexus and is planned as a standalone product.",
-      "technologies": ["React Native", "TypeScript"],
-      "category": "mobile",
-      "date": "In development",
-      "features": [],
-      "media": {
-        "orientation": "portrait",
-        "src": null
-      },
-      "featured": true,
-      "overview": "A focused film and series directory with poster search, personal notes and watch-status tracking. The standalone app is in development."
     }
   ]
 }

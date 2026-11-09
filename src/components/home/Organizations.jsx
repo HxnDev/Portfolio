@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { IconPlayerPause, IconPlayerPlay } from '@tabler/icons-react';
-
 const organizations = [
   { name: 'AICA', file: 'aica-supplied.png', relation: 'Employer' },
   { name: 'EPFL', file: 'epfl.svg', relation: 'Employer' },
@@ -9,15 +6,14 @@ const organizations = [
   { name: 'Vodacom', file: 'vodacom.svg', relation: 'Client collaboration' },
   { name: 'Think Vision', file: 'think-vision.png', relation: 'Employer' },
   { name: 'Zixel', file: 'zixel.jpeg', relation: 'Employer' },
-  { name: 'FAST–NUCES', file: 'fast.png', relation: 'Education' },
+  { name: 'FAST–NUCES', file: 'fast-supplied.jpeg', relation: 'Education' },
 ];
 
 export default function Organizations() {
-  const [paused, setPaused] = useState(false);
   return (
     <div className="organizations-slider" role="region" aria-label="Organizations and affiliations">
       <div
-        className={'organizations-window ' + (paused ? 'is-paused' : '')}
+        className="organizations-window"
         tabIndex={0}
         aria-label="Organization slider. Focus or hover to pause."
       >
@@ -51,14 +47,6 @@ export default function Organizations() {
           ))}
         </div>
       </div>
-      <button
-        className="slider-control"
-        onClick={() => setPaused(!paused)}
-        aria-label={paused ? 'Play organization slider' : 'Pause organization slider'}
-      >
-        {paused ? <IconPlayerPlay size={14} /> : <IconPlayerPause size={14} />}
-        <span>{paused ? 'Play slider' : 'Pause slider'}</span>
-      </button>
     </div>
   );
 }

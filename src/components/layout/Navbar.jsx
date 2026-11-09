@@ -4,6 +4,7 @@ import { IconMenu2, IconX, IconSun, IconMoon } from '@tabler/icons-react';
 
 const links = [
   ['home', 'Home'],
+  ['about', 'About'],
   ['experience', 'Experience'],
   ['education', 'Education'],
   ['projects', 'Projects'],

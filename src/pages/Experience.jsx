@@ -1,5 +1,5 @@
 import PageHead from '../components/common/PageHead';
-import { ExperienceCard } from '../components/common/Cards';
+import { ExperienceCard, EducationCard } from '../components/common/Cards';
 import { EXPERIENCE, EDUCATION } from '../data/experience';
 
 export default function Experience() {
@@ -16,15 +16,11 @@ export default function Experience() {
       <div className="section-heading">
         <h2>Education.</h2>
       </div>
-      {EDUCATION.map(education => (
-        <article className="card education-card" key={education.school}>
-          <h3>{education.degree}</h3>
-          <p>{education.school}</p>
-          <p className="meta">
-            {education.date} · {education.location}
-          </p>
-        </article>
-      ))}
+      <div className="education-list">
+        {EDUCATION.map(education => (
+          <EducationCard key={education.school} education={education} />
+        ))}
+      </div>
     </section>
   );
 }

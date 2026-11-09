@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconArrowUpRight, IconBrandGithub, IconPhoto } from '@tabler/icons-react';
+import {
+  IconArrowUpRight,
+  IconBrandGithub,
+  IconBrandGooglePlay,
+  IconPhoto,
+} from '@tabler/icons-react';
 import Reveal from '../common/Reveal';
 import ProjectMedia from './ProjectMedia';
 
@@ -34,7 +39,8 @@ export function ProjectActions({ project }) {
     <div className="actions project-actions">
       {project.liveUrl && (
         <a className="button primary" href={project.liveUrl} target="_blank" rel="noreferrer">
-          Live demo
+          {project.liveLabel && <IconBrandGooglePlay size={17} />}
+          {project.liveLabel || 'Live demo'}
           <IconArrowUpRight size={16} />
         </a>
       )}
@@ -66,7 +72,9 @@ export default function ProjectCard({ project, featured = false }) {
         )}
         <div className="project-copy">
           <p className="eyebrow">
-            {project.category === 'web' ? 'Web application' : project.category} · {project.date}
+            Personal Project -{' '}
+            {project.projectType ||
+              (project.category === 'web' ? 'Web application' : project.category)}
           </p>
           <h3>
             <Link to={`/projects/${project.id}`}>{project.title}</Link>

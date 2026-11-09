@@ -63,16 +63,16 @@ export function RecommendationCard({ recommendation, excerpt = '' }) {
   return (
     <Reveal>
       <figure className="card quote-card">
-        <IconQuote className="quote-mark" size={25} stroke={1.5} aria-hidden="true" />
-        <blockquote>{excerpt || recommendation.quote}</blockquote>
         <figcaption>
           <span className="avatar">{initials}</span>
           <div>
             <strong>{recommendation.name}</strong>
             <span className="meta">{recommendation.title}</span>
-            {!excerpt && <span className="meta">{recommendation.relation}</span>}
+            <span className="meta">{recommendation.relation}</span>
           </div>
         </figcaption>
+        <IconQuote className="quote-mark" size={25} stroke={1.5} aria-hidden="true" />
+        <blockquote>{excerpt || recommendation.quote}</blockquote>
       </figure>
     </Reveal>
   );
@@ -86,7 +86,8 @@ export function CertificationCard({ certification }) {
   return (
     <Reveal>
       <Tag {...props} className="card credential-card">
-        <span className="icon-tile">
+        <span className="certificate-label">Certificate of completion</span>
+        <span className="icon-tile certificate-seal">
           <IconCertificate size={24} stroke={1.5} />
         </span>
         <div>
@@ -96,10 +97,50 @@ export function CertificationCard({ certification }) {
           </p>
           <p className="credential-description">{certification.description}</p>
         </div>
+        <span className="certificate-signature" aria-hidden="true">
+          Hassan Shahzad
+        </span>
         {certification.url && (
           <IconArrowUpRight size={18} className="credential-arrow" aria-hidden="true" />
         )}
       </Tag>
+    </Reveal>
+  );
+}
+
+export function EducationCard({ education }) {
+  return (
+    <Reveal>
+      <article className="card education-feature">
+        <div
+          className={
+            'education-identity ' + (education.shortName === 'FAST–NUCES' ? 'education-fast' : '')
+          }
+        >
+          <img
+            src={'/logos/' + education.logo}
+            alt={education.shortName}
+            width="180"
+            height="120"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <div className="education-top">
+            <p className="eyebrow">
+              {education.shortName} · {education.location}
+            </p>
+            <span className="date-chip">{education.date}</span>
+          </div>
+          <h3>{education.degree}</h3>
+          <p className="muted">{education.school}</p>
+          <ul>
+            {education.points.map(point => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
     </Reveal>
   );
 }

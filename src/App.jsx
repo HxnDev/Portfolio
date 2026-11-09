@@ -27,7 +27,7 @@ function RouteEffects() {
     previous.current = { pathname, hash, key };
     if (last.pathname === pathname && last.hash === hash && !hash) return;
     if (hash) {
-      const target = document.getElementById(hash === '#about' ? 'home' : hash.slice(1));
+      const target = document.getElementById(hash.slice(1));
       target?.scrollIntoView({
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
           ? 'instant'
@@ -73,7 +73,7 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/about" element={<Navigate to="/#home" replace />} />
+            <Route path="/about" element={<Navigate to="/#about" replace />} />
             <Route path="/contact" element={<Navigate to="/#contact" replace />} />
             <Route path="/terminal" element={<Navigate to="/" replace />} />
             <Route path="/recommendations" element={<Recommendations />} />

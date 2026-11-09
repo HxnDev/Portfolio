@@ -1,6 +1,6 @@
 # Hassan Shahzad — Portfolio
 
-A lightweight React portfolio at [hxndev.com](https://hxndev.com), with matching monochrome dark and light themes, an interactive network globe, and a single scrolling overview.
+A lightweight React portfolio at [hxndev.com](https://hxndev.com), with coordinated ink-blue/coral dark and light themes, an interactive network globe, and a single scrolling overview.
 
 ## Local development
 
@@ -23,15 +23,15 @@ JavaScript source is checked with TypeScript (checkJs), ESLint and Prettier. The
 
 ## Navigation and content
 
-- /: Personal introduction → Organizations → Professional experience → Education → Skills & tools → Selected projects → Recommendations → Certifications → Contact.
+- /: Personal introduction → About Me → Organizations → Professional experience → Education → Skills & tools → Featured projects → Recommendations → Certifications → Contact.
 - /experience: full career history and education.
 - /projects: searchable project archive with category filters.
 - /projects/:id: individual descriptions, highlights, technologies, live links and source links.
 - /recommendations: full recommendations, searchable and filterable by relationship.
 - /certifications: full credentials, searchable and filterable by issuer. Credentials without public URLs remain non-clickable.
-- Legacy /about links return to the introduction; /contact returns to the contact section. /terminal returns home. /projects?project=id opens the matching detail page. /JobFit and its child paths still redirect to the standalone app.
+- Legacy /about links open About Me; /contact returns to the contact section. /terminal returns home. /projects?project=id opens the matching detail page. /JobFit and its child paths still redirect to the standalone app.
 
-Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Featured projects are Viora, Nexus, Odyssey, JobFit, ManCave and Afterlight (the planned standalone movie directory). Their recording frames share a 16:10 stage and preserve the source aspect ratio. Recordings are pending; see docs/project-recordings.md to add them. Older archive/detail images remain existing local assets. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
+Edit src/data/ to maintain experience, education, projects, credentials, recommendations and homepage selections. Featured projects are Viora, Nexus, Odyssey, Afterlight (the planned standalone movie directory), JobFit and ManCave, in that order on both the homepage and project collection. Local GIFs live in public/assets/gifs/ and play near the viewport. Featured cards alternate media placement on desktop and use equal 5:4 stages; archive stages use 16:10. Both preserve source aspect ratio. See docs/project-recordings.md for replacement instructions. Older archive/detail images remain existing local assets. The contact form prepares a draft in the visitor's email app; it has no backend and never claims delivery.
 
 ## Performance and motion
 
@@ -43,7 +43,7 @@ Edit src/data/ to maintain experience, education, projects, credentials, recomme
 - Self-hosted DM Sans with system-font fallback. No homepage GitHub API, remote placeholder images or font-service requests.
 - Retired terminal, games, custom cursor, preloader, shaders, post-processing, GSAP, Lenis, Framer Motion and Three.js dependencies removed.
 
-The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Zixel and FAST-NUCES, with relationship labels and hover/focus/explicit pause controls. User-supplied AICA, GBDI, Think Vision and Zixel marks are stored locally; clean official EPFL/FAST assets are retained because the replacement attachments have baked checkerboard backgrounds. Courses have topic summaries; homepage recommendations show their complete original text. Pinning is intentionally not implemented. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
+The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Zixel and FAST-NUCES, with relationship labels and hover/focus pause behavior. Logos retain their natural colors on white panels. The supplied FAST logo replaces the earlier wordmark; its source has a baked checkerboard background. EPFL uses a tightly framed vector mark. Education includes FAST and Punjab College. Courses use certificate-inspired cards. Recommendation authors appear first; Enrico’s homepage excerpt ends after the viewer-page features, while the recommendations archive retains the full text. Pinning is intentionally not implemented. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
 
 ## Hosting
 

@@ -14,7 +14,12 @@ import Organizations from '../components/home/Organizations';
 import ContactSection from '../components/home/ContactSection';
 import Section from '../components/common/Section';
 import Reveal from '../components/common/Reveal';
-import { ExperienceCard, RecommendationCard, CertificationCard } from '../components/common/Cards';
+import {
+  ExperienceCard,
+  RecommendationCard,
+  CertificationCard,
+  EducationCard,
+} from '../components/common/Cards';
 import ProjectCard from '../components/projects/ProjectCard';
 import { EXPERIENCE, EDUCATION } from '../data/experience';
 import { RECOMMENDATIONS } from '../data/recommendations';
@@ -70,15 +75,58 @@ export default function Home() {
             </dl>
           </div>
         </div>
-        <Link
-          to="/#organizations"
-          className="scroll-cue"
-          aria-label="Explore organizations and experience"
-        >
+        <Link to="/#about" className="scroll-cue" aria-label="Read about Hassan">
           <IconArrowDown size={18} />
           <span>Scroll to explore</span>
         </Link>
       </section>
+      <Section
+        id="about"
+        title="A little about me"
+        eyebrow="The person behind the products"
+        className="about-band"
+      >
+        <Reveal>
+          <article className="about-layout">
+            <div className="about-portrait">
+              <img
+                src="/images/profile.jpg"
+                alt="Hassan Shahzad"
+                width="440"
+                height="520"
+                loading="lazy"
+              />
+              <span>Based in Geneva, Switzerland</span>
+            </div>
+            <div className="about-copy">
+              <p className="eyebrow">Engineer. Builder. Curious by default.</p>
+              <h3>
+                I care about how software feels.
+                <br />
+                And how well it works.
+              </h3>
+              <p>
+                I’m Hassan, a full-stack engineer who enjoys turning complicated problems into
+                products that feel simple to use. My work has taken me from enterprise systems at
+                IBM to research platforms at EPFL and robotics software at AICA.
+              </p>
+              <p>
+                Outside work, I build tools for the things I care about: staying healthy, keeping
+                life organized, remembering journeys and collecting the things I love. That
+                curiosity is behind the personal projects you’ll find here.
+              </p>
+              <div className="tags">
+                <span>Thoughtful interfaces</span>
+                <span>Reliable systems</span>
+                <span>Useful everyday tools</span>
+              </div>
+              <Link to="/#contact" className="more-link">
+                Let’s build something together <IconArrowUpRight size={18} />
+              </Link>
+            </div>
+          </article>
+        </Reveal>
+      </Section>
       <Section
         id="organizations"
         title="Organizations I’ve worked with"
@@ -101,35 +149,11 @@ export default function Home() {
         </div>
       </Section>
       <Section id="education" title="Education" eyebrow="Where it started">
-        {EDUCATION.map(education => (
-          <Reveal key={education.school}>
-            <article className="card education-feature">
-              <div className="education-identity">
-                <img
-                  src="/logos/fast.png"
-                  alt="FAST–NUCES"
-                  width="180"
-                  height="40"
-                  loading="lazy"
-                />
-                <span className="eyebrow">2018 — 2022</span>
-              </div>
-              <div>
-                <p className="eyebrow">FAST–NUCES · Islamabad, Pakistan</p>
-                <h3>{education.degree}</h3>
-                <p className="muted">{education.school}</p>
-                <a
-                  className="more-link"
-                  href="/assets/resume/hassan_resume.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View résumé <IconArrowUpRight size={17} />
-                </a>
-              </div>
-            </article>
-          </Reveal>
-        ))}
+        <div className="education-list">
+          {EDUCATION.map(education => (
+            <EducationCard key={education.school} education={education} />
+          ))}
+        </div>
       </Section>
       <Section id="skills" title="Skills & tools" eyebrow="From interface to infrastructure">
         <div className="grid four">
@@ -153,13 +177,13 @@ export default function Home() {
       </Section>
       <Section
         id="projects"
-        title="Selected projects"
+        title="Featured projects"
         eyebrow="Ideas turned into working products"
         to="/projects"
         linkLabel="Explore all projects"
       >
         <div className="featured-projects">
-          {['viora', 'nexus', 'odyssey', 'jobfit', 'mancave', 'afterlight'].map(id => (
+          {['viora', 'nexus', 'odyssey', 'afterlight', 'jobfit', 'mancave'].map(id => (
             <ProjectCard key={id} project={projects.find(project => project.id === id)} featured />
           ))}
         </div>
@@ -174,6 +198,11 @@ export default function Home() {
         <div className="grid two featured-recommendations">
           <RecommendationCard
             recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Enrico Eberhard')}
+            excerpt={
+              RECOMMENDATIONS.find(rec => rec.name === 'Enrico Eberhard')
+                .quote.split('Hassan used AI tools')[0]
+                .trim() + ' …'
+            }
           />
           <RecommendationCard
             recommendation={RECOMMENDATIONS.find(rec => rec.name === 'Kajhal Ramsunder')}

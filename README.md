@@ -1,6 +1,6 @@
 # Hassan Shahzad — Portfolio
 
-A lightweight React portfolio at [hxndev.com](https://hxndev.com), with coordinated ink-blue/coral dark and light themes, an interactive network globe, and a single scrolling overview.
+A lightweight React portfolio at [hxndev.com](https://hxndev.com), with neutral charcoal and warm-white themes with coral accents, an interactive network globe, and a single scrolling overview.
 
 ## Local development
 
@@ -37,13 +37,13 @@ Edit src/data/ to maintain experience, education, projects, credentials, recomme
 
 - Native scrolling with smooth anchor navigation, without scroll interception or pinned stages.
 - Component-level CSS entrances with staggered cards and hover/focus feedback. Effects activate as elements enter the viewport, including newly mounted filter results. Content remains visible when observers are unavailable.
-- Canvas 2D mesh globe and particle network with pixel density capped at 2. A short automatic introduction settles after 4.2 seconds; subsequent movement responds to pointer/scroll input, then rendering stops when idle. Drawing also stops offscreen and in hidden tabs. There is no persistent globe pause control.
+- Canvas 2D mesh globe and particle network with pixel density capped at 2. Background nodes follow slow, independent drifting paths, alongside pointer/scroll interaction. Drawing stops offscreen, in hidden tabs and for reduced-motion preferences. There is no persistent globe pause control.
 - Reduced motion also disables scroll animations and CSS transitions.
 - Detail routes load on demand; project images load lazily with reserved aspect ratios.
 - Self-hosted DM Sans with system-font fallback. No homepage GitHub API, remote placeholder images or font-service requests.
 - Retired terminal, games, custom cursor, preloader, shaders, post-processing, GSAP, Lenis, Framer Motion and Three.js dependencies removed.
 
-The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Zixel and FAST-NUCES, with relationship labels and hover/focus pause behavior. Logos retain their natural colors on white panels. The supplied FAST logo replaces the earlier wordmark; its source has a baked checkerboard background. EPFL uses a tightly framed vector mark. Education includes FAST and Punjab College. Courses use certificate-inspired cards. Recommendation authors appear first; Enrico’s homepage excerpt ends after the viewer-page features, while the recommendations archive retains the full text. Pinning is intentionally not implemented. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
+The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Zixel and FAST-NUCES, with relationship labels and hover/focus pause behavior. The organization strip uses monochrome marks without background panels. Job and education logos retain their natural colors, including blue IBM and a transparent FAST mark. EPFL uses a tightly framed vector mark. Education includes FAST and Punjab College. Courses use certificate-inspired cards. Recommendation authors appear first; Enrico’s homepage excerpt ends after the viewer-page features, while the recommendations archive retains the full text. Pinning is intentionally not implemented. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
 
 ## Hosting
 

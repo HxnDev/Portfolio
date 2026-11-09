@@ -112,34 +112,30 @@ export function EducationCard({ education }) {
   return (
     <Reveal>
       <article className="card education-feature">
-        <div
-          className={
-            'education-identity ' + (education.shortName === 'FAST–NUCES' ? 'education-fast' : '')
-          }
-        >
-          <img
-            src={'/logos/' + education.logo}
-            alt={education.shortName}
-            width="180"
-            height="120"
-            loading="lazy"
-          />
-        </div>
-        <div>
-          <div className="education-top">
-            <p className="eyebrow">
-              {education.shortName} · {education.location}
-            </p>
-            <span className="date-chip">{education.date}</span>
-          </div>
+        <div className="education-top">
           <h3>{education.degree}</h3>
-          <p className="muted">{education.school}</p>
-          <ul>
-            {education.points.map(point => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
+          <span className="date-chip">{education.date}</span>
         </div>
+        <div className="education-school">
+          <div className="education-identity">
+            <img
+              src={'/logos/' + education.logo}
+              alt={education.shortName}
+              width="86"
+              height="55"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p className="muted">{education.school}</p>
+            <p className="meta">{education.location}</p>
+          </div>
+        </div>
+        <ul>
+          {education.points.map(point => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
       </article>
     </Reveal>
   );

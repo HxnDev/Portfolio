@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-// Canvas-only network: precomputed geometry, no 3D framework or permanent render loop.
+// Canvas-only network: slow independent particle paths, paused offscreen or in hidden tabs.
 const RINGS = 18,
   SEGMENTS = 30;
 const sphere = Array.from({ length: RINGS + 1 }, (_, ring) =>
@@ -18,6 +18,8 @@ const particles = Array.from({ length: 76 }, (_, index) => ({
   x: ((index * 79 + 17) % 997) / 997,
   y: ((index * 137 + 83) % 991) / 991,
   phase: index * 1.7,
+  speed: 0.08 + ((index * 37) % 71) / 600,
+  amplitude: 22 + ((index * 23) % 39),
 }));
 
 export default function Globe() {
@@ -39,8 +41,7 @@ export default function Globe() {
       targetY = 0,
       scroll = 0;
     let enteredAt = 0,
-      intro = 0,
-      lastInteraction = 0;
+      intro = 0;
     const paint = now => {
       frame = 0;
       if (!width || !height) return;
@@ -55,21 +56,26 @@ export default function Globe() {
       }
       const elapsed = enteredAt ? Math.min((now - enteredAt) / 4200, 1) : 0;
       intro = reduced ? 1 : 1 - Math.pow(1 - elapsed, 3);
-      const rgb = dark ? '128,173,224' : '50,86,133';
+      const rgb = dark ? '216,210,204' : '85,78,72';
       const color = alpha => 'rgba(' + rgb + ',' + alpha + ')';
       ctx.clearRect(0, 0, width, height);
-      const drift = reduced ? 0 : intro * 16;
+      const time = reduced ? 0 : (now - enteredAt) / 1000;
+      const drift = reduced ? 0 : intro;
       const dots = particles.map(p => [
-        p.x * width + Math.sin(p.phase + intro) * drift + pointerX * (p.x - 0.5) * 20,
-        p.y * height + Math.cos(p.phase + intro) * drift - progress * 35 * p.x,
+        p.x * width +
+          Math.sin(p.phase + time * p.speed) * p.amplitude * drift +
+          pointerX * (p.x - 0.5) * 20,
+        p.y * height +
+          Math.cos(p.phase * 1.3 + time * p.speed * 0.73) * p.amplitude * drift -
+          progress * 35 * p.x,
       ]);
       dots.forEach(([x, y], index) => {
         dots.slice(index + 1).forEach(([endX, endY]) => {
           const distance = Math.hypot(x - endX, y - endY);
           const reach = width < 600 ? 140 : 220;
           if (distance > reach) return;
-          ctx.strokeStyle = color((1 - distance / reach) * (dark ? 0.34 : 0.23));
-          ctx.lineWidth = 0.65;
+          ctx.strokeStyle = color((1 - distance / reach) * (dark ? 0.34 : 0.48));
+          ctx.lineWidth = dark ? 0.65 : 0.85;
           ctx.beginPath();
           ctx.moveTo(x, y);
           ctx.lineTo(endX, endY);
@@ -160,16 +166,7 @@ export default function Globe() {
         ctx.fill();
         ctx.restore();
       }
-      if (
-        !reduced &&
-        visible &&
-        !document.hidden &&
-        (elapsed < 1 ||
-          now - lastInteraction < 550 ||
-          Math.abs(targetX - pointerX) > 0.002 ||
-          Math.abs(targetY - pointerY) > 0.002)
-      )
-        frame = requestAnimationFrame(paint);
+      if (!reduced && visible && !document.hidden) frame = requestAnimationFrame(paint);
     };
     const request = () => {
       if (!visible || document.hidden || frame) return;
@@ -178,20 +175,17 @@ export default function Globe() {
     const onScroll = () => {
       const rect = host.getBoundingClientRect();
       scroll = Math.max(0, Math.min(-rect.top / height, 1));
-      lastInteraction = performance.now();
       request();
     };
     const onPointer = event => {
       const rect = host.getBoundingClientRect();
       targetX = (event.clientX - rect.left) / width - 0.5;
       targetY = (event.clientY - rect.top) / height - 0.5;
-      lastInteraction = performance.now();
       request();
     };
     const reset = () => {
       targetX = 0;
       targetY = 0;
-      lastInteraction = performance.now();
       request();
     };
     const resize = new ResizeObserver(entries => {

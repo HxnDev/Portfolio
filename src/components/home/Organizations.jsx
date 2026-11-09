@@ -6,7 +6,7 @@ const organizations = [
   { name: 'Vodacom', file: 'vodacom.svg', relation: 'Client collaboration' },
   { name: 'Think Vision', file: 'think-vision.png', relation: 'Employer' },
   { name: 'Zixel', file: 'zixel.jpeg', relation: 'Employer' },
-  { name: 'FAST–NUCES', file: 'fast-supplied.jpeg', relation: 'Education' },
+  { name: 'FAST–NUCES', file: 'fast-transparent.png', relation: 'Education' },
 ];
 
 export default function Organizations() {

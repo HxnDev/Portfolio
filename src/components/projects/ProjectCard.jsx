@@ -92,9 +92,6 @@ export default function ProjectCard({ project, featured = false }) {
             ))}
           </div>
           <ProjectActions project={project} />
-          <Link className="more-link" to={`/projects/${project.id}`}>
-            Read project details <IconArrowUpRight size={16} />
-          </Link>
         </div>
       </article>
     </Reveal>

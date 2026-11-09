@@ -59,7 +59,7 @@ export const EDUCATION = [
     school: 'National University of Computer & Emerging Sciences (FAST-NUCES)',
     degree: 'Bachelor of Science in Computer Science',
     date: '2018 — 2022',
-    logo: 'fast-supplied.jpeg',
+    logo: 'fast-transparent.png',
     shortName: 'FAST–NUCES',
     points: [
       'Built a foundation in algorithms, data structures, databases, operating systems and software engineering.',

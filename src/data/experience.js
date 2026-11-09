@@ -71,7 +71,7 @@ export const EDUCATION = [
   {
     school: 'Punjab College of Information & Technology',
     shortName: 'Punjab College',
-    degree: 'Intermediate studies',
+    degree: 'Pre-Engineering',
     date: '2016 — 2018',
     location: 'Rawalpindi, Pakistan',
     logo: 'punjab-college.png',

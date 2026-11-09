@@ -1,0 +1,2 @@
+import{r as c,j as a,L as n}from"./index-CIpr7xlb.js";function t({title:e,children:s,section:r}){return c.useEffect(()=>{document.title=`${e.replace(/\.$/,"")} | Hassan Shahzad`},[e]),a.jsxs("div",{className:"page-head",children:[a.jsx(n,{className:"back-link",to:`/#${r}`,children:"← Back to overview"}),a.jsx("h1",{children:e}),a.jsx("p",{children:s})]})}export{t as P};
+//# sourceMappingURL=PageHead-CUkz6FXM.js.map

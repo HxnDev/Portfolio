@@ -1,0 +1,2 @@
+import{j as e,L as t}from"./index-CIpr7xlb.js";function a(){return e.jsxs("section",{className:"container detail-page empty-state",children:[e.jsx("p",{className:"eyebrow",children:"404"}),e.jsx("h1",{children:"That page isn’t here."}),e.jsx("p",{children:"Let’s get you back to the good stuff."}),e.jsx(t,{className:"button primary",to:"/",children:"Back to home ↗"})]})}export{a as default};
+//# sourceMappingURL=NotFound-Cjs3V2oX.js.map

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Development
+
+- Remove automatic GitHub Pages publishing and disable Git-triggered Vercel production and preview deployments while the redesign remains in local development.
+- Refresh the README with current features, unreleased version status and deployment controls.
+
 ### Improved
 
 - See clean, background-free monochrome logos throughout the organization strip, and the supplied blue IBM mark in work experience.

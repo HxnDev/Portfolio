@@ -2,6 +2,12 @@
 
 A lightweight React portfolio at [hxndev.com](https://hxndev.com), with neutral charcoal and warm-white themes with coral accents, an interactive network globe, and a single scrolling overview.
 
+## Current development state
+
+The current portfolio redesign is **Unreleased**. Package metadata remains `0.0.0`; no release version or release date has been assigned. See [CHANGELOG.md](CHANGELOG.md) for the complete changes.
+
+Recent updates include the About Me portrait, neutral themes, smoothly drifting hero nodes, alternating GIF project cards, project-specific bezel colors, side-by-side education, certificate-style credentials, author-first recommendations, background-free organization logos and the supplied blue IBM artwork in work experience.
+
 ## Local development
 
 ```sh
@@ -45,9 +51,16 @@ Edit src/data/ to maintain experience, education, projects, credentials, recomme
 
 The organization slider includes AICA, EPFL, GBDI, IBM, Vodacom, Think Vision, Zixel and FAST-NUCES, with relationship labels and hover/focus pause behavior. The organization strip uses monochrome marks without background panels. Job and education logos retain their natural colors, including blue IBM and a transparent FAST mark. EPFL uses a tightly framed vector mark. Education includes FAST and Punjab College. Courses use certificate-inspired cards. Recommendation authors appear first; Enrico’s homepage excerpt ends after the viewer-page features, while the recommendations archive retains the full text. Pinning is intentionally not implemented. DM Sans uses the SIL Open Font License in public/fonts/OFL.txt.
 
-## Hosting
+## Deployment policy
 
-The existing Vercel rewrite serves client-side routes on refresh. The existing GitHub Pages workflow runs on pushes to main; pushes can trigger deployment. Hosting configuration and release version are unchanged. User review is required before pushing.
+This repository is development-only for now. Use `npm run dev`; no deployment is needed for local work.
+
+- The push-triggered GitHub Pages deployment workflow has been removed.
+- `vercel.json` sets `git.deploymentEnabled` to `false`, disabling automatic Git-triggered production and preview deployments on every branch. The client-side route rewrite is retained for a future authorized deployment.
+- `npm run preview` only serves an existing local production build; it does not create a hosted Preview deployment and is not needed for normal development.
+- These changes take effect remotely after they are pushed. They do not remove existing deployment history, unpublish existing sites, cancel already queued deployments, or change remote dashboard settings.
+- If GitHub Pages is still configured to publish the old `gh-pages` branch, disable it under repository **Settings → Pages → Build and deployment → Source / Branch** (choose **None** for the publishing branch). This is separate from removing the workflow that updates that branch.
+- Do not build, push, publish or deploy without explicit authorization.
 
 ## Manual review
 
